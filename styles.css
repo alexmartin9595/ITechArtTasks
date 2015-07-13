@@ -1,0 +1,583 @@
+﻿body {
+    background:url("background.jpg") 100% 100%;
+    
+    font-family:Arial;
+}
+
+.mainblock {
+    border-radius:10px;
+    margin:100px auto;
+    width: 1176px;    
+    background-color:#f4f4f4;
+    padding:0;
+    position:relative;
+}
+
+header {
+    border-radius:10px 10px 0 0;
+    padding: 0; 
+    margin:0;   
+    height:500px;    
+}
+
+nav {
+    border-radius:10px 10px 0 0;
+    position:relative;
+    width:100%;   
+    display:table;    
+    margin:0;   
+    padding:30px 0;     
+    background-color:#ffffff;
+}
+
+.mainlink {
+    display:table-cell;
+    vertical-align:middle;
+    text-decoration:none;       
+}
+
+.logo {        
+    vertical-align:middle;  
+    float:left;   
+    margin:0;
+    padding-left:20px;
+}
+
+.sitename-header {
+    font-size: 22px;
+    font-family: "Lato";
+    color: rgb(0, 61, 72);
+    margin: 0 15px;
+    margin-left:90px;
+    font-weight:700;
+}
+
+.sitename-header span {
+    color:#f77462;
+}
+
+.caption {  
+    margin:0;
+    margin-left:90px;
+    font-size:14px; 
+    font-family: "Lato";
+    color: rgb(146, 146, 146);    
+}
+
+  
+.navlist { 
+    position:absolute;
+    right:0;    
+    bottom:10px;
+    display:table-cell; 
+    margin:0;                     
+    padding:0;
+    list-style:none;
+}
+
+.navitem {        
+    display:table-cell;
+    padding:30px 0;             
+}
+
+
+.navitem a {
+    color:#787878;
+    text-decoration:none;
+    padding:0 40px;
+    margin:0;
+    border-right: solid 1px #e7e7e7;
+    font-size:14px;
+    font-weight:700;            
+}
+
+.navlist :last-child a {    
+    border:0;
+}
+
+.navitem a:hover {
+    color:#6dc5dd;    
+}
+
+.mainimage {    
+    margin-top:49px;
+    margin-left:100px;
+}
+
+.banner  {    
+    position:absolute;
+    left: 580px;
+    top: 190px;
+}
+
+.banner p {    
+  font-size: 22px;
+  font-family: "Source Sans Pro";
+  color: rgb(0, 61, 72);
+  font-weight:100;
+  margin:0;
+  text-shadow:0 -1px 1px #92aaaf;
+}
+
+.banner h4 {
+    font-size:32px;
+    font-family: "Source Sans Pro";
+    color: #003d48;
+    font-weight:700;
+    margin:0px;
+    text-shadow:1px 0 1px #63878e;
+
+}
+
+.text {
+    margin-top:15px;
+    color:#8b8b8b;
+    margin-right:170px;
+    text-shadow: 1px 0 1px #d4d4d4;
+}
+
+button {
+    margin-top:30px;
+    background-color:#f77462;
+    padding:10px 20px;
+    border:0;
+    border-radius:3px;
+    color:white;
+    cursor:pointer;   
+    font-size: 16px;
+    font-family: "Source Sans Pro";  
+}
+
+.itemsblock {    
+    overflow:hidden;
+    background-color:#6dc5dd;  
+    padding:0;     
+}
+
+.itemsblock article {
+    width:350px;
+    margin:60px 0 60px 30px;
+   
+    position:relative;      
+    float:left; 
+    padding:0;   
+}
+
+.itemsblock h5 {   
+    margin:0 0 0 90px;    
+    font-size: 20px;
+    font-family: "Source Sans Pro";
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    line-height: 1.44;
+    text-align: left;  
+}
+
+.articletext  {     
+    width:240px;   
+    margin:5px 0 0 90px;    
+    font-size: 15px;
+    font-family: "Source Sans Pro";
+    color: rgb(255, 255, 255);
+    line-height: 1.6;
+    text-align: left;  
+}
+
+.articletext a {
+    text-decoration:none;
+    font-family: "Source Sans Pro";
+    color: rgb(255, 255, 255);
+    display:block;
+    margin-top:20px;
+}
+
+.articletext img {
+    margin-bottom:-3px;
+    margin-left:10px;
+}
+
+.item_background {
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+.flag {
+    position:absolute;
+    top:10px;
+    left:18px;
+    z-index:1;
+}
+
+.camera {
+    position:absolute;
+    top:16px;
+    left:13px;
+    z-index:1;
+}
+
+.house {
+    position:absolute;
+    top:9px;
+    left:12px;
+    z-index:1;
+}
+
+.articlesblock {    
+    display:table;  
+    background-color:white;       
+    box-sizing:border-box;
+    padding-top:60px;    
+}
+
+.articles {
+    display:table-cell;
+    padding:0;
+    margin:0;      
+}
+
+.articlesblock section {         
+    clear:both;
+    margin:0;    
+    margin-bottom:60px;          
+}
+
+.articlesblock p {
+    width:520px;
+    margin:30px 0 0 245px;
+    padding:0;   
+    font-size: 15px;
+    font-family: "Myriad Pro";
+    color: rgb(140, 145, 147);   
+    font-weight:500;  
+}
+
+.articlesblock img {
+    width:185px;
+    height:195px;
+    margin: 0 30px;
+    float: left;
+}
+
+.articlesblock h5 {
+    margin:0;    
+    font-size: 18px;
+    font-family: "Myriad Pro";
+    color: rgb(0, 61, 72);    
+}
+
+.tabs {    
+    display:table-cell;            
+    padding:15px 35px;    
+}
+
+input[type=radio] {
+    display:none;
+    float:left;
+}
+
+.tabs label {       
+    border-radius: 5px 5px 0 0;
+    padding:15px 25px;
+    cursor:pointer;
+    background-color:#ffffff;    
+    font-size: 16px;
+    font-family: "Source Sans Pro";
+    color:#787878;
+    font-weight: bold;       
+    margin:0;
+    border:2px solid #ececec;
+    border-bottom:0;    
+}
+
+.tabs > input:checked + label {
+    background-color: #003d48;    
+    color: rgb(247, 116, 98);         
+    padding-bottom:17px;  
+}
+
+.tabs article {
+    display:none;    
+    border:2px solid #ececec;     
+    clear:both;
+    margin-top:15px;   
+    background-color:#003d48; 
+    padding:30px;    
+}
+
+.tabs > input:nth-of-type(1):checked ~ article:nth-of-type(1),
+.tabs > input:nth-of-type(2):checked ~ article:nth-of-type(2) {
+    display: block;
+}
+
+.tabs h5 {  
+  font-size: 20px;
+  font-family: "Source Sans Pro";
+  color: rgb(109, 197, 221);
+  font-weight: bold; 
+}
+
+.tabs article > p {
+    margin:0;
+    width:auto;    
+    font-size: 15px;
+    font-family: "Myriad Pro";
+    color: rgb(255, 255, 255);    
+}
+
+.tabs ul{
+    padding:40px 30px;
+    list-style:none;
+    border:2px solid #ececec;
+    border-top:0;
+    margin:0;     
+}
+
+.tabs li {   
+    margin:0;
+    padding:7px 0;
+    border-bottom: 1px solid #ececec;    
+    font-size: 15px;
+    font-family: "Myriad Pro";
+    color: rgb(120, 120, 120);      
+}
+
+.tabs li img {
+    width:auto;
+    height:auto;
+    margin:5px 15px 0 0;
+}
+
+.info_row {
+    box-sizing:padding-box;
+    height:205px;
+    background-color:#f77462;
+    padding:60px 260px 0 260px;
+}
+
+.info_row  h5 {    
+  font-size: 32px;
+  font-family: "Source Sans Pro";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  line-height: 0.9;
+  text-align: center;  
+  margin:0;
+}
+
+.info_row  p {  
+  font-size: 18px;
+  font-family: "Source Sans Pro";
+  color: rgb(255, 255, 255);
+  line-height: 1.6;
+  text-align: center; 
+}
+
+.sectionsblock {        
+    padding:30px 30px 0 30px;
+    background-color:white;   
+    box-sizing:border-box;
+}
+
+.sectionsblock h5 {
+    text-align:center;    
+    font-size: 32px;
+    font-family: "Source Sans Pro";
+    color: rgb(0, 61, 72);  
+    font-weight: bold;   
+    margin:0;
+}
+
+.sectionsblock h4 {    
+    font-size: 22px;
+    font-family: "Source Sans Pro";
+    color: rgb(109, 197, 221);  
+    text-align:center;
+    border-bottom: 1px solid #dbdbdb;
+    border-top: 1px solid #dbdbdb;
+    padding:10px 0;
+    margin:30px 0 0 0;
+}
+
+.sections {
+    display:table;
+    padding:40px 0 0 0;
+}
+
+.newslist {
+    vertical-align:top;
+    display:table-cell;   
+    margin:0;            
+    padding:0;        
+}
+
+.newslist section {    
+    margin-bottom:60px;
+    clear:both;
+}
+
+.newslist h3 {  
+  font-size: 18px;
+  font-family: "Source Sans Pro";
+  color: rgb(0, 61, 72);
+  font-weight: bold;  
+  margin:0;
+}
+
+.newslist .comments {    
+    margin:0; 
+    font-size: 16px;
+    font-family: "Source Sans Pro";  
+    color: rgb(247, 116, 98);
+}
+
+.newslist .text {
+    width:430px;
+    margin:0;    
+    font-size: 15px;
+    margin-top:15px;
+    margin-left:100px;  
+    text-shadow: 1px 0 1px #d4d4d4;  
+}
+
+.newsicon {
+    margin:0 0 -3px 10px;
+}
+
+.userlist { 
+    display:table-cell;      
+    margin:0;
+    padding:0;
+    padding-left:40px;    
+}
+
+.userlist section {
+    background-color:#ececec;        
+    margin-bottom:40px;    
+    padding:30px;       
+}
+
+.usertext {    
+    padding:10px 0;       
+    font-size: 15px;   
+    float:left;
+    font-family: "Source Sans Pro";
+    color: rgb(140, 145, 147);
+    width:340px;
+    text-shadow: 1px 0 1px #d4d4d4;    
+}
+
+.username { 
+  margin:0;  
+  font-size: 16px;
+  font-family: "Source Sans Pro";
+  color: rgb(247, 116, 98);
+  font-weight: bold;  
+}
+
+.usericon {
+    margin:0;
+    margin-left:38px;
+}
+
+.username {
+    margin-top:20px;
+}
+
+.date { 
+    float:left;   
+    position:relative;
+    background:url("date_background.png") 100% 100% no-repeat;   
+    width:70px;
+    height:65px;    
+    font-size: 35px;
+    font-family: "Source Sans Pro";
+    color: rgb(255, 255, 255);  
+    text-align: center;  
+    margin-bottom:20px;
+    margin-right:30px;
+}
+
+.date div {   
+    font-size: 20px; 
+    margin-top:-5px;
+    text-align:center;
+    font-weight: bold;
+}
+
+
+footer {
+    margin:0;
+    padding:0 25px;
+    border-radius: 0 0 10px 10px;
+    background-color:#6dc5dd;
+}
+
+.footerlist {
+    display:table;
+    padding:35px 0;
+    border-bottom:1px solid #9fd9e9
+}
+
+footer ul {
+    display:table-cell;    
+    list-style:none;
+    margin:0;  
+    padding:0; 
+    padding-right:20px;    
+}
+
+footer li {        
+      font-size: 14px;
+      font-family: "Source Sans Pro";
+      color: rgb(255, 255, 255); 
+      width:170px;
+      padding:5px 0;       
+}
+
+.footerlist :last-child {
+    padding-right:0;
+}
+
+
+footer .mainitem {   
+      font-size: 20px;
+      font-family: "Source Sans Pro";
+      color: rgb(255, 255, 255);
+      font-weight: bold;      
+      margin-bottom:5px;
+}
+
+.sitename {
+    width:100%;
+    position:relative;
+    display:table;
+    padding:30px 0;
+}
+
+.sitename pre {
+    display:table-cell;
+    font-size: 15px;
+    font-family: "Source Sans Pro";
+    color: rgb(255, 255, 255); 
+}
+
+.icons {  
+          
+}
+
+.twitter_icon {
+    position:absolute;
+    right:0;
+    bottom:20px; 
+}
+
+.facebook_icon {
+    position:absolute;
+    right:40px;
+    bottom:20px;
+}
+
+
+
+
