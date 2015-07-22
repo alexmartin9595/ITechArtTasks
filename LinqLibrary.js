@@ -1,61 +1,56 @@
 var LinqLibrary = (function () {
-    var currentObject = {
-        where: function (array, selector) {
-            try {
-                modifiedArray = array.map(selector);
-            }
-            catch (error) {
-                throw new TypeError('Incorrect values');
-            }
-            return modifiedArray;
-        },
+    var currentArray = new Array();
 
-        last: function (array) {
-            try {
-                var lastItem = array[array.length - 1];
-            }
-            catch (error) {
-                throw new TypeError('Incorrect values');
-            }
-            return lastItem;
-        }
-    };
+    this.where = function (array, selector) {        
+        return array.filter(selector);        
+    }
+
+    this.last = function (array) {        
+        return currentArray[currentArray.length - 1];        
+    }
 
     this.asChain = function (array) {
-        currentObject.currentArray = array;
-        return this;
+        return new ChainObject(array);
     }
 
-    this.where = function (selector) {
-        currentObject.currentArray = currentObject.where(currentObject.currentArray, selector).filter(function (value) {
-            return value !== undefined && value !== null;
-        });
-        return this;
-    }
+    function ChainObject(array) {
+        var currentArray = array;
+        where = function (selector) {
+            var modifiedArray = array.filter(selector);
+            return new ChainObject(modifiedArray);
+        }
 
-    this.last = function () {
-        return currentObject.last(currentObject.currentArray);
+        last = function () {
+            var lastItem = currentArray[currentArray.length - 1];
+            return lastItem;
+        }
+
+        toArray = function () {
+            return currentArray;
+        }
+        
+        return {
+            where: where,
+            last: last,
+            toArray: toArray
+        }
     }
 
     this.toArray = function () {
-        return currentObject.currentArray;
+        return currentArray;
     }
 
-    this.isFunction = function (object) {
-        var getType = {};
-        return object && getType.toString.call(object) === '[object Function]';
+    this.isFunction = function (object) {        
+        return Object.prototype.toString.call(object) === '[object Function]';
     }
 
     this.isNumber = function (object) {
-        return (typeof object === "number");
-        
+        return (typeof object === "number");        
     }
 
     this.isString = function (object) {
-        return (typeof object === "string")
+        return (typeof object === "string");
     }
-
-
 
     return {
         asChain: asChain,

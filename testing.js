@@ -7,9 +7,14 @@ var func = function (param) {
     if (param < 20)
         return param;
 }
+
 var array = [1, 9, 11, 12, 25, 6, 3, 52];
-var last = LinqLibrary.asChain(array).where(selector).where(func).last();
-alert(LinqLibrary.isNumber("sdfsdf"));
-alert(LinqLibrary.isString("sdfsdf"));
-alert(LinqLibrary.isFunction(selector));
-alert(last);
+var chain1 = LinqLibrary.asChain(array).where(selector);
+var chain2 = chain1.where(func).toArray();
+console.log(chain1.toArray());
+console.log(chain2);
+console.log(LinqLibrary.isNumber("sdfsdf"));
+console.log(LinqLibrary.isString("sdfsdf"));
+console.log(LinqLibrary.isFunction(selector));
+
+
