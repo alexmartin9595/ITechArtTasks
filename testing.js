@@ -7,15 +7,9 @@ var func = function (param) {
     if (param < 20)
         return param;
 }
-//var array = [1, 9, 11, 12, 25, 6, 3, 52];
-// var last = LinqLibrary.asChain(array).where(selector).where(func).last();
-// alert(LinqLibrary.isNumber("sdfsdf"));
-// alert(LinqLibrary.isString("sdfsdf"));
-// alert(LinqLibrary.isFunction(selector));
-// alert(last);
 
 function method(x, y, z) {
-   return x + y + z;
+    return x + y + z;
 }
 
 var result = PartialApplication.makePartial(method, 4, 5);
@@ -31,11 +25,24 @@ function sumCallback(prev, currentvalue) {
 var result = LinearFold.makeFold([2, 3, 4], sumCallback, 0);
 console.log(result);
 
-function difCallback(currentValue) {
-    return currentValue - 1;
+function unFoldCallback(currentValue) {
+    var isWorking = true,
+        value = 0;
+    if (currentValue <= 0)
+        isWorking = false;
+    else {
+        value = Math.tan(currentValue);
+        currentValue -= 1;
+    }
+
+    return {
+        isWorking: isWorking,
+        value: value,
+        state: currentValue
+    }
 }
 
-var result = Unfold.makeUnfold(difCallback, 10);
+var result = Unfold.makeUnfold(unFoldCallback, 10);
 console.log(result);
 
 function mapCallback(param) {
@@ -45,7 +52,7 @@ function mapCallback(param) {
 var result = Map.makeMap([1, 2, 3, 44, 55], mapCallback);
 console.log(result);
 
-function filterCallback (param) {
+function filterCallback(param) {
     return param % 2 === 1;
 }
 
