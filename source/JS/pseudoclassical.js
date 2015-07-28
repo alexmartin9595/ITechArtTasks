@@ -1,8 +1,9 @@
 var Pseudoclassical = (function () {
     function extend(childObject, parentObject) {
         var currentObject = function () { };
+
         currentObject.prototype = parentObject.prototype;
-        childObject.prototype = currentObject();
+        childObject.prototype = new currentObject();
         childObject.prototype.constructor = childObject;
         childObject.superclass = parentObject.prototype;
     }
@@ -20,36 +21,39 @@ var Pseudoclassical = (function () {
     }
 
     function Rabbit(name) {
-        this.name = name;
-    }
-
-    Rabbit.prototype = {
-        run: function (speed) {
+        Rabbit.superclass.constructor.apply(this, arguments);
+        this.run = function (speed) {
             console.log(this.name + " is running with the speed " + speed);
         }
-    }
+    }   
 
     extend(Rabbit, Animal);
 
     function Fish(name) {
-        this.name = name;        
-    }
+        Fish.superclass.constructor.apply(this, arguments);
 
-    Fish.prototype = {
-        float: function (speed) {
+        this.walk = function () {
+            console.log("fish don't walk");
+        }
+
+        this.float = function (speed) {
             console.log(this.name + " is floating with the speed " + speed);
-        },
-        walk: function () {
-            console.log(this.name + " is not walking");
         }
     }
 
     extend(Fish, Animal);
 
     function Carp(name) {
-        this.name = name;
+        Carp.superclass.constructor.apply(this, arguments);
     }
 
     extend(Carp, Fish);
+
+    return {
+        Animal: Animal,
+        Rabbit: Rabbit,
+        Fish: Fish,
+        Carp: Carp
+    }
 
 })();
