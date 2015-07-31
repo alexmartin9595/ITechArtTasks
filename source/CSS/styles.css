@@ -1,78 +1,103 @@
-﻿body {
-    background-color:#e4e4e4;
+﻿@font-face {
+    font-family: "Royalacid";     
+    src: url("../../fonts/royalacidbath/Royalacid.TTF");
+}
+
+body {
+    background: url("../../images/background.jpg") repeat-y;   
+    background-size:100%;
+    color:#000000;
+
+    font-family:Royalacid;
+    font-weight:100;
+    font-size:20px;
 }
 
 .mainwrapper {
-    background-color:#393939;
+    background: url("../../images/wrapper-background.jpg");   
+    background-size:100%;
 
-    width: 1200px;
+    width:1150px;
+    padding:50px;
 
-    position:relative;         
-    margin:10px auto;     
+    margin:0 auto;  
 }
 
-.additional-block {
-    background-color:#252525;
-    opacity:0.8;
+.maintitle {
+    opacity:0.9;
+    color:#ffffff;   
 
-    width:100%;
-    height:100%;
+    padding:15px 0;
 
-    position:absolute;
-    top:0;           
-   
-    z-index:1;
+    font-size:26px;
 }
 
-label {
-    border-radius:5px;
-    background-color:#32CC99;
+.menu {
+    color:#ffffff;
+}
+
+th {
+    background-color:#35527a;
     color:#ffffff;
 
-    display:inline-block;
-    margin:10px 20px;  
-    padding:5px 10px;
-    
-    font-weight:700;
-    font-size:16px;
-    font-family:Arial;  
+    padding:10px 15px;
 }
 
-input {
-    border-radius:5px;
+td {
+    background-color:#252525;    
 
-    margin:5px 20px;    
+    border:2px solid #727375;    
+
+    padding:10px 20px;
+}
+
+.booked { 
+    background-color:#929292;
+    color:#ffffff;
+    opacity:1;
+         
+    border:0;
+}
+
+.dish-image {
+    vertical-align:middle;
+    display:inline;
+
+    margin:0;
+
+    width:180px;
+    height:120px;
+}
+
+.add { 
+    background:none;
+
+    border:0;
+}
+
+.remove {
+    background:none;
+
+    border:0;
 }
 
 button {
-    border-radius:5px;
-    border:0;
-    cursor:pointer;
-    background-color: #f88379;
-    color:#e4e4e4;
-
-    margin:10px 20px;
-    padding:5px;
-
-    font-weight:700;
-    font-size:16px;    
-}
-
-img {    
-    width:64px; 
-     
-    display:block;  
-    margin:0 auto;   
-    margin-top:100px;
-
-    z-index:2;    
-}
-
-p {
+    background-color:#00bdb1;
     color:#ffffff;
 
-    margin:10px;
-    text-align:center;
+    border:0;
+    border-radius:5px;
+    cursor:pointer;
 
-    z-index:2;      
+    padding:15px;
+    margin:10px 10px 0 0;
+
+    font-weight:100;
+    font-size:18px;
+    font-family:Royalacid;
+}
+
+.user-choice {
+    display:none;
+    color:#ffffff;
 }
