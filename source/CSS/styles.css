@@ -1,0 +1,129 @@
+﻿@font-face {
+    font-family: "Reklame";     
+    src: url("../../fonts/Reklame.otf");
+}
+
+body {
+    background: url("../../images/background.jpg") repeat-y;
+    background-size:100%;
+    color:#ffffff;
+
+    font-family:Reklame;
+    font-size:18px;
+}
+
+.wrapper {
+    background: url("../../images/wrapper-background.gif") repeat-y;
+    background-size:100%;
+
+    width:1200px;
+
+    margin:10px auto;
+}
+
+nav { 
+     
+}
+
+.navlist {
+    background-color:#e6e6e6;   
+
+    display:table;  
+    width:100%; 
+}
+
+.navlist li {
+    background-color:#e6e6e6;   
+
+    display: table-cell;
+}
+
+.navlist a {    
+    color:#252525;
+
+    display:block;
+
+    padding:15px;    
+
+    text-align:center;
+    text-decoration:none;
+}
+
+.navlist a:hover {
+    background-color:#d7d8db;        
+}
+
+.content {
+    display:table;
+}
+
+.ingredients {   
+    color:#252525;
+       
+    display:none;
+}
+
+.ingredients ul {
+     background-color:#c7e5e4;    
+     display:inline-block;
+}
+
+h2 {
+    color: #ffffff;
+
+    margin:10px;
+
+    font-size:24px;
+}
+
+h3 {
+    color: #ffffff;
+    margin:10px;
+}
+
+th {
+    background-color:#e6e6e6;   
+
+    padding:10px;
+}
+
+table {
+    margin:10px;   
+}
+
+td {
+     background-color:#c7e5e4;    
+
+     padding:10px;  
+}
+
+.add {
+    background:none;
+
+    border:0;
+}
+
+.delete {
+    background:none;
+
+    border:0;
+}
+
+button {
+    background-color:#00bdb1;
+    color:#ffffff;
+
+    border-radius:5px;
+    border:0;
+    cursor:pointer;
+
+    padding:5px 10px;
+
+    font-family:Reklame;
+}
+
+.orders {
+    color:#252525;
+
+    display:none;
+}
