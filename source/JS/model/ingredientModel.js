@@ -10,7 +10,7 @@ var Ingredients = (function () {
                 { id: 3, name: "smoked", price: 9000, weight: 30, photo: "" },
                 { id: 4, name: "hot", price: 9000, weight: 30, photo: "" }]},
             {family: "meat", kinds: [
-                { id: 5, name: "bacon", price: "13500", weight: 50, photo: "" },
+                { id: 5, name: "bacon", price: 13500, weight: 50, photo: "" },
                 { id: 6, name: "ham", price: 12000, weight: 50, photo: "" },
                 { id: 7, name: "sausage", price: 15000, weight: 50, photo: "" }]},
             { family: "vegetables", kinds: [

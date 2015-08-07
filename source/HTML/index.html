@@ -28,11 +28,11 @@
                 <li><a href="">Cook</a></li>
                 <li><a href="">Stock</a></li>
             </ul>
-        </nav>
-        <button>Orders</button>             
-        <button>Create pizza</button>
+        </nav>          
+        <button class="navbutton" ng-controller="IngredientsController" ng-click="createPizza()">Create pizza</button>
         <div class="content">      
             <div ng-controller="PizzaController" class="pizza">
+                <h2>Pizza</h2>
                 <table>
                     <tr>
                         <th>№</th>
@@ -45,9 +45,29 @@
                     <tr ng-repeat="pizza in pizza">
                         <td>{{$index + 1}}</td>
                         <td>{{pizza.name}}</td>
-                        <td>{{pizza.price}}</td>
-                        <td>{{$index + 1}}</td>
-                        <td>{{$index + 1}}</td>
+                        <td>{{getPizzaPriceById($index)}}</td>
+                        <td>{{pizza.diameter}}</td>
+                        <td class="pizza-image"><img src="{{pizza.photo}}" /></td>
+                        <td>
+                            <span class="ingredients-viewer" ng-click="showPopup()">Show Ingredients</span>
+                            <div class="ingredients-popup">
+                                <table>
+                                    <tr>
+                                        <th>Name</th>                                        
+                                        <th>Photo</th>
+                                        <th>Price</th>
+                                        <th>Count</th>
+                                    </tr>
+                                    <tr ng-repeat="ingredient in pizza.ingredients">
+                                        <td>{{getNameById(ingredient.id)}}</td>
+                                        <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}" /></td>
+                                        <td>{{getPriceById(ingredient.id)}}</td>
+                                        <td>{{ingredient.count}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                        <td class="add"><button ng-click="createCustomOrder(pizza)">Add</button></td>                        
                     </tr>    
                 </table>
             </div>
@@ -68,35 +88,53 @@
                             <td>{{kind.weight}}</td>
                             <td>{{kind.photo}}</td>
                             <td>{{kind.price}}</td>
-                            <td class="add"><button ng-click="addIngredient($index)">Add</button></td>
+                            <td class="add"><button ng-click="addIngredient(currentOrderIndex, kind)">Add</button></td>
                         </tr>
                     </table>
                 </div>                            
             </div>
 
             <div ng-controller="OrderController" class="orders">
-                <h2>Order</h2>               
-                <table>
-                    <tr>
-                        <th>Family</th>
-                        <th>Name</th>
-                        <th>Weight</th>
-                        <th>Photo</th>
-                        <th>Price</th>
-                    </tr>
-                    <tr ng-repeat="item in order">
-                        <td>{{item}}</td>
-                        <!--<td>{{item.name}}</td>
-                        <td>{{item.weight}}</td>
-                        <td>{{item.weight}}</td>
-                        <td>{{item.price}}</td>-->
-                        <td class="delete"><button ng-click="addIngredient(ingredient)">Delete</button></td>
-                    </tr>
-                </table>                
+                <div class="order-list" ng-show="order.pizza.length > 0">
+                    <h2>Order</h2>               
+                    <table>
+                        <tr>
+                            <th>№</th>
+                            <th>Name</th>                        
+                            <th>Composition</th>
+                        </tr>
+                        <tr ng-repeat="item in order.pizza">
+                            <td>{{item.name}}</td>
+                            <td>{{item.price}}</td>                        
+                            <td>
+                                <span class="ingredients-viewer" ng-click="showIngredients($index)">Show Ingredients</span>                            
+                            </td>
+                            <td class="delete"><button ng-click="deleteOrder($index)">Delete</button></td>
+                        </tr>                                       
+                    </table>         
+                </div>
+                <div class="order-ingredients-popup">
+                    <h3>Indgredients</h3>
+                    <table>
+                        <tr>
+                            <th>Name</th>                                        
+                            <th>Photo</th>
+                            <th>Price</th>
+                            <th>Count</th>                    
+                        </tr>
+                        <tr ng-repeat="ingredient in currentPizza.ingredients">
+                            <td>{{getNameById(ingredient.id)}}</td>
+                            <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}" /></td>
+                            <td>{{getPriceById(ingredient.id)}}</td>
+                            <td>{{ingredient.count}}</td>
+                        </tr>                
+                    </table>                                
+                </div>                                       
             </div>
         </div>
         
-    </div>   
+    </div> 
+    
 
 </body>
 </html>

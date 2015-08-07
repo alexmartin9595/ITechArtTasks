@@ -16,7 +16,7 @@ body {
     background: url("../../images/wrapper-background.gif") repeat-y;
     background-size:100%;
 
-    width:1200px;
+    width:1350px;    
 
     margin:10px auto;
 }
@@ -53,8 +53,15 @@ nav {
     background-color:#d7d8db;        
 }
 
-.content {
+.content {    
     display:table;
+}
+
+.pizza {
+	color:#000000;
+    
+    vertical-align: top;
+    display: table-cell;
 }
 
 .ingredients {   
@@ -71,7 +78,7 @@ nav {
 h2 {
     color: #ffffff;
 
-    margin:10px;
+    margin:20px;
 
     font-size:24px;
 }
@@ -88,13 +95,16 @@ th {
 }
 
 table {
-    margin:10px;   
+    margin:20px;   
 }
 
 td {
-     background-color:#c7e5e4;    
+     background-color:#c7e5e4;
+	
+	 border: 2px solid #d3d3d3;	 
 
-     padding:10px;  
+     padding:15px 20px;
+	 vertical-align:middle;
 }
 
 .add {
@@ -117,13 +127,49 @@ button {
     border:0;
     cursor:pointer;
 
-    padding:5px 10px;
+    padding:10px 15px;
 
     font-family:Reklame;
+}
+
+.navbutton {
+	margin: 20px;
+	padding: 10px 20px;
+	
+	font-size:22px;
 }
 
 .orders {
     color:#252525;
 
-    display:none;
+    display:table-cell;
+}
+
+.pizza-image {
+	background-color:#252525;
+}
+
+.pizza-image img {
+	width: 180px;
+	height: 120px;
+}
+
+.ingredients-viewer {
+	cursor:pointer;
+}
+
+.ingredients-viewer:hover {
+	text-decoration:underline;
+}
+
+.ingredients-popup {
+	color: #000000;
+	
+	display: none;
+}
+
+.order-ingredients-popup {
+    color: #000000;
+	
+	display: none;
 }
