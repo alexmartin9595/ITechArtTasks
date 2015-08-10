@@ -33,7 +33,7 @@ nav {
 }
 
 .navlist li {
-    background-color:#e6e6e6;   
+    background-color:#FFCF73;   
 
     display: table-cell;
 }
@@ -50,7 +50,7 @@ nav {
 }
 
 .navlist a:hover {
-    background-color:#d7d8db;        
+    background-color:#FFBD40;        
 }
 
 .content {    
@@ -75,6 +75,14 @@ nav {
      display:inline-block;
 }
 
+p {
+	color:#ffffff;
+	
+	margin: 20px;
+	
+	font-size:22px;
+}
+
 h2 {
     color: #ffffff;
 
@@ -89,7 +97,7 @@ h3 {
 }
 
 th {
-    background-color:#e6e6e6;   
+    background-color:#FFCF73;   
 
     padding:10px;
 }
@@ -99,7 +107,8 @@ table {
 }
 
 td {
-     background-color:#c7e5e4;
+     background-color:#238E86;
+	 color:#e3e3e3;
 	
 	 border: 2px solid #d3d3d3;	 
 
@@ -120,7 +129,7 @@ td {
 }
 
 button {
-    background-color:#00bdb1;
+    background-color:#BD2F36;
     color:#ffffff;
 
     border-radius:5px;
@@ -130,6 +139,12 @@ button {
     padding:10px 15px;
 
     font-family:Reklame;
+}
+
+.confirm {
+	margin: 20px;
+	
+	font-size: 22px;
 }
 
 .navbutton {
