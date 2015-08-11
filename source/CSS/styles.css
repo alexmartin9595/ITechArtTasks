@@ -1,0 +1,217 @@
+﻿@font-face {
+    font-family: "Reklame";     
+    src: url("../../fonts/Reklame.otf");
+}
+
+body {
+    background: url("../../images/background.jpg") repeat-y;
+    background-size:100%;
+    color:#000000;
+
+    font-family:Reklame;
+    font-size:18px;
+}
+
+.wrapper {
+    background: url("../../images/wrapper-background.gif") repeat-y;
+    background-size:100%;
+
+    width:1350px;    
+
+    margin:10px auto;
+}
+
+.navlist {
+    background-color:#e6e6e6;   
+
+    display:table;  
+    width:100%; 
+}
+
+.navlist li {
+    background-color:#FFCF73;   
+
+    display: table-cell;
+}
+
+.navlist a {    
+    color:#252525;
+
+    display:block;
+
+    padding:15px;    
+
+    text-align:center;
+    text-decoration:none;
+}
+
+.navlist a:hover {
+    background-color:#FFBD40;        
+}
+
+.content {    
+    display:table;
+}
+
+.pizza {
+	color:#000000;
+    
+    vertical-align: top;
+    display: table-cell;
+}
+
+.ingredients {   
+    background-color: #252525;
+    color:#252525;
+       
+    display:none;
+}
+
+.ingredients ul {
+     background-color:#c7e5e4;    
+     display:inline-block;
+}
+
+.order-sum {
+	color:#ffffff;
+	
+	margin: 20px;
+	
+	font-size:22px;
+    text-align: left;
+}
+
+h2 {
+    color: #ffffff;
+
+    margin:20px;
+
+    font-size:24px;
+}
+
+h3 {
+    color: #ffffff;
+    
+    margin:10px 20px;
+}
+
+th {
+    background-color:#FFCF73;   
+
+    padding:10px;
+}
+
+table {
+    margin:20px;   
+}
+
+td {
+     background-color:#238E86;
+	 color:#e3e3e3;
+	
+	 border: 2px solid #d3d3d3;	 
+
+     padding:15px 20px;
+	 vertical-align:middle;
+}
+
+.add {
+    background:none;
+
+    border:0;
+}
+
+.delete {
+    background:none;
+
+    border:0;
+}
+
+button {
+    background-color:#BD2F36;
+    color:#ffffff;
+
+    border-radius:5px;
+    border:0;
+    cursor:pointer;
+
+    padding:10px 15px;
+
+    font-family:Reklame;
+}
+
+.confirm {
+	margin: 20px;
+	
+	font-size: 22px;
+}
+
+.navbutton {
+	margin: 20px;
+	padding: 10px 20px;
+	
+	font-size:22px;
+}
+
+.orders {
+    color:#252525;
+
+    display:table-cell;
+}
+
+.pizza-image {
+	background-color:#252525;   
+}
+
+.pizza-image img {    
+	width: 180px;
+	height: 120px;    
+    
+    margin: 0;
+}
+
+.ingredients-viewer {
+	cursor:pointer;
+}
+
+.ingredients-viewer:hover {
+	text-decoration:underline;
+}
+
+.ingredients-popup {
+	color: #000000;
+    background-color: #252525;
+	
+	display: none;
+}
+
+.order-ingredients-popup {
+    color: #000000;
+    background-color: #252525;
+	
+	display: none;
+}
+
+.button {
+    background: none;
+    
+    cursor: pointer;
+    font-family: FontAwesome;
+    font-size: 32px;
+}
+
+.remove {
+    color:#F16970;
+}
+
+.more {
+    color:#56C7BE;
+}
+
+.less {
+    color:#F3D08E;
+}
+
+.edit {
+    color: #74C7C0;
+}
