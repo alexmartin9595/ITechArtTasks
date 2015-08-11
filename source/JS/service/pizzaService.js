@@ -11,7 +11,7 @@
                 for (var i = 0; i < pizza.ingredients.length; i++) {
                     var id = pizza.ingredients[i].id,
                          ingredient = ingredientService.getIngredientById(id);
-                    sum += ingredient.price;                
+                    sum += ingredient.price *  pizza.ingredients[i].count;                
                 }
                 return sum;
             }

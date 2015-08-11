@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>My HTML File</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/bootstrap/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="../CSS/reset.css" />
+    <link type="text/css" rel="stylesheet" href="../../fonts/font-awesome-4.4.0/css/font-awesome.min.css" />    
     <link type="text/css" rel="stylesheet" href="../CSS/blocker/blocker-styles.css"/>
-    <link type="text/css" rel="stylesheet" href="../CSS/styles.css"/>   
+    <link type="text/css" rel="stylesheet" href="../CSS/styles.css"/>  
+     
        
 </head>
 <body>
@@ -100,8 +103,8 @@
                                 <span class="ingredients-viewer" ng-click="showIngredients($index)">Show Ingredients</span>                            
                             </td>  
 							<td>{{item.count}}</td>
-                            <td class="delete"><button ng-click="deleteOrder($index)">Delete</button></td>
-                            <td class="delete"><button ng-click="">Edit</button></td>
+                            <td class="delete"><span class="button remove" title="remove" ng-click="deleteOrder($index)">&#xf00d</span></td>
+                            <td class="delete"><span class="button edit" title="edit" ng-click="openOrderEditor($index)">&#xf044;</span></td>
                         </tr>                                       
                     </table>         
                 </div>
@@ -119,9 +122,9 @@
                             <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}" /></td>
                             <td>{{getPriceById(ingredient.id)}}</td>
                             <td>{{ingredient.count}}</td>
-							<td class="delete"><button ng-click="deleteIngredient(ingredient)">Delete</button></td>
-							<td class="delete"><button ng-click="incrementIngredient(ingredient)">More</button></td>
-							<td class="delete"><button ng-click="decrementIngredient(ingredient)">Less</button></td>
+							<td class="delete"><span class="button remove" ng-click="deleteIngredient(ingredient)">&#xf00d;</span></td>
+							<td class="delete"><span class="button more" ng-click="incrementIngredient(ingredient)">&#xf062;</span></td>
+							<td class="delete"><span class="button less" ng-click="decrementIngredient(ingredient)">&#xf063;</span></td>
                         </tr>                
                     </table>                                
                 </div> 
@@ -135,6 +138,9 @@
     <script src="../JS/jquery/jquery-1.11.3.js" type="text/javascript"></script>
     <script src="../JS/jquery/jquery.bpopup.min.js" type="text/javascript"></script>
     <script src="../JS/jquery/jquery-ui.min.js"></script>
+    
+    <script src="../JS/bootstrap/bootstrap.js"></script>   
+    <script src="../JS/bootstrap/bootbox.min.js"></script>
 
     <script src="../JS/angular/angular.js"></script>
     

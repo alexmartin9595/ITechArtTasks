@@ -14,7 +14,10 @@
         $scope.createCustomOrder = orderService.createCustomOrder;
     
         $scope.showPopup = function () {
-            $('.ingredients-popup').bPopup();
+            $('.ingredients-popup').bPopup({
+                follow: [false, false], 
+                position: [500, 100] 
+            });
         }
     }
     

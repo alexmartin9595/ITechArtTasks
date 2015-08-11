@@ -8,15 +8,26 @@
             pizza: [],
             sum: 0,
             currentPizzaIndex: 0
-        }
-    
+        } 
+        
+        function cloneObject (object) {
+            
+            var copy = object.constructor();
+            for (var attr in object) {
+                if (object.hasOwnProperty(attr)) copy[attr] = object[attr];
+            }
+            return copy;
+        }                           
+            
         function deleteIngredient(ingredient) {
             var currentIndex = order.currentPizzaIndex,
                 currentIngredientIndex = getIngredientIndex(ingredient),
                 currentPizzaIngredients = order.pizza[currentIndex].ingredients;
-    
+                
+            if (order.pizza[currentIndex].isCustom === true)
+                return;    
             currentPizzaIngredients.splice(currentIngredientIndex, 1);
-            order.sum -= ingredient.price;
+            order.sum -= ingredient.price *  currentPizzaIngredients[currentIngredientIndex].count ;
         }
     
         function getIngredientIndex(ingredient) {
@@ -59,9 +70,10 @@
                 var lastIndex = order.pizza.length,
                     pizzaIndex = getPizzaIndex(customPizza);
     
-                if (pizzaIndex === -1) {
+                if (pizzaIndex === -1) {                                        
                     order.pizza.push(customPizza);
                     order.pizza[lastIndex].count = 1;
+                    order.pizza[lastIndex].isCustom = true;
                 }
                 else
                     order.pizza[pizzaIndex].count += 1;
@@ -75,14 +87,16 @@
                 
                 order.sum -= pizzaService.getPizzaPrice(currentPizza) * pizzaCount;
                 order.pizza.splice(pizzaIndex, 1);
-            },
+            },                      
     
             addIngredient: function (ingredient) {
                 var currentIndex = order.currentPizzaIndex,
                     currentIngredientIndex = getIngredientIndex(ingredient),                    
                     currentPizzaIngredients = order.pizza[currentIndex].ingredients,
-                    lastIngredientIndex = currentPizzaIngredients.length;
-    
+                    lastIngredientIndex = currentPizzaIngredients.length;                
+                               
+                if (order.pizza[currentIndex].isCustom === true)
+                    return;
                 if (currentIngredientIndex === -1) {
                     currentPizzaIngredients.push(ingredient);
                     currentPizzaIngredients[lastIngredientIndex].count = 1;
@@ -98,7 +112,9 @@
                 var currentIndex = order.currentPizzaIndex,
                     currentIngredientIndex = getIngredientIndex(ingredient),
                     currentPizzaIngredients = order.pizza[currentIndex].ingredients;
-    
+                
+                if (order.pizza[currentIndex].isCustom === true)
+                    return; 
                 currentPizzaIngredients[currentIngredientIndex].count += 1;
                 order.sum += ingredient.price;
             },
@@ -107,16 +123,22 @@
                 var currentIndex = order.currentPizzaIndex,
                     currentIngredientIndex = getIngredientIndex(ingredient),
                     currentPizzaIngredients = order.pizza[currentIndex].ingredients;
-    
+                    
+                if (order.pizza[currentIndex].isCustom === true)
+                    return;     
                 currentPizzaIngredients[currentIngredientIndex].count -= 1;
                 order.sum -= ingredient.price;
                 if (currentPizzaIngredients[currentIngredientIndex].count === 0)
                     deleteIngredient(ingredient);
-            }
+            },
             
-            // confirmationCallback: function () {
-            //     $('wrapper').block();
-            // }
+            confirmationCallback: function (callback) {
+                var randomValue = Math.floor(Math.random() * (9 - 0 + 1));
+                if (randomValue === 0)                    
+                    return false;                                  
+                else                   
+                    return true;                
+            }
         }
     }
     

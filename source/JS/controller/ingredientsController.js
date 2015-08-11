@@ -19,7 +19,10 @@
         $scope.addIngredient = orderService.addIngredient;           
         
         $scope.createPizza = function () {
-            $('.ingredients').bPopup();             
+            $('.ingredients').bPopup({
+                follow: [false, false], 
+                position: [500, 100] 
+            });             
             orderService.createOrder();            
         }                    
     }

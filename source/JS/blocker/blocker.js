@@ -1,5 +1,5 @@
 (function ($) {
-    $.fn.block = function (params) {
+    $.fn.block = function (callback, params) {
 		var defaultParams = {
 			text: "Wait please ",
 			delay: 3000
@@ -16,6 +16,7 @@
                 .append("<p>" + params.text + "</p>");
             setTimeout(function () {
 				self.show();
+				callback();
                 $('.additional-block').remove();				
             }, params.delay);                
         });          

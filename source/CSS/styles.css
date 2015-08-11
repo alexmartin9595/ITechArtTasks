@@ -6,7 +6,7 @@
 body {
     background: url("../../images/background.jpg") repeat-y;
     background-size:100%;
-    color:#ffffff;
+    color:#000000;
 
     font-family:Reklame;
     font-size:18px;
@@ -190,4 +190,28 @@ button {
     background-color: #252525;
 	
 	display: none;
+}
+
+.button {
+    background: none;
+    
+    cursor: pointer;
+    font-family: FontAwesome;
+    font-size: 32px;
+}
+
+.remove {
+    color:#F16970;
+}
+
+.more {
+    color:#56C7BE;
+}
+
+.less {
+    color:#F3D08E;
+}
+
+.edit {
+    color: #74C7C0;
 }
