@@ -1,5 +1,8 @@
 USE EnterpriseDb
 GO
 
-SELECT EmployeeId FROM Salary Name WHERE Month = 5 AND Year = 2015 AND SalaryAmount < (
-	SELECT SalaryAmount FROM Salary Name WHERE Month < 5 AND Year = 2015);
+SELECT Department.DepartmentId, Department.Name, result.CountEmployee FROM Department
+JOIN (SELECT Career.DepartmentId, COUNT(Career.DepartmentId) AS CountEmployee FROM Career 
+	WHERE EndDate > CAST(getdate() as date)
+	GROUP BY Career.DepartmentId) result ON Department.DepartmentId = result.DepartmentId
+GROUP BY Department.DepartmentId, Department.Name, result.CountEmployee
