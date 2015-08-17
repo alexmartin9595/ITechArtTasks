@@ -98,6 +98,10 @@ button {
 }
 
 .user-choice {
-    display:none;
+    background: url("../../images/wrapper-background.jpg");   
+    background-size:100%;
     color:#ffffff;
+    
+    padding: 20px;
+    display:none;    
 }
