@@ -1,4 +1,4 @@
-(function () {
+(function () { 
     'use strict';
     
     var restaurantApp = angular.module('restaurantApp');

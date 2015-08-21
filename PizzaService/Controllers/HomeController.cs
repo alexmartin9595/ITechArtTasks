@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using PizzaService.BusinessLogic;
+using PizzaService.Data;
 using PizzaService.Entities;
 
 namespace PizzaService.Controllers
@@ -34,15 +34,22 @@ namespace PizzaService.Controllers
         [HttpGet]
         public ActionResult GetAllIngredients()
         {
-            IEnumerable<Ingredient> ingredients = IngredientLogic.GetInstance().GetAllIngredients();
+            IEnumerable<Ingredient> ingredients = IngredientRepository.Instance.GetAllIngredients();
             return Json(ingredients, JsonRequestBehavior.AllowGet) ;
         }
 
         [HttpGet]
         public ActionResult GetIngredientById(int id)
         {
-            Ingredient ingredients = IngredientLogic.GetInstance().GetIngredientById(id);
+            Ingredient ingredients = IngredientRepository.Instance.GetIngredientById(id);
             return Json(ingredients, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult GetAllPizza()
+        {
+            IEnumerable<Pizza> pizza = PizzaRepository.Instance.GetAllPizza();
+            return Json(pizza, JsonRequestBehavior.AllowGet);
         }
     }
 }

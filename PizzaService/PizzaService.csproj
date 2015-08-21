@@ -176,6 +176,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508210801457_Migrate.cs" />
+    <Compile Include="Migrations\201508210801457_Migrate.Designer.cs">
+      <DependentUpon>201508210801457_Migrate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -287,14 +292,19 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PizzaService.BusinessLogic\PizzaService.BusinessLogic.csproj">
-      <Project>{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}</Project>
-      <Name>PizzaService.BusinessLogic</Name>
+    <ProjectReference Include="..\PizzaService.Data\PizzaService.Data.csproj">
+      <Project>{e761a2e8-4d62-4e08-9829-7ad4b866b391}</Project>
+      <Name>PizzaService.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\PizzaService.Entities\PizzaService.Entities.csproj">
       <Project>{239E6F3A-9207-4E65-84FB-850E20C16D14}</Project>
       <Name>PizzaService.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508210801457_Migrate.resx">
+      <DependentUpon>201508210801457_Migrate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

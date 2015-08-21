@@ -19,5 +19,7 @@ namespace PizzaService.Entities
         public int Weight { get; set; }
 
         public string Photo { get; set; }
+
+        public string Family { get; set; }
     }
 }

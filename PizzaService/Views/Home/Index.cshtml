@@ -17,10 +17,10 @@
             </tr>
             <tr ng-repeat="pizza in pizza">
                 <td>{{$index + 1}}</td>
-                <td>{{pizza.name}}</td>
-                <td>{{getPizzaPriceById($index)}}</td>
-                <td>{{pizza.diameter}}</td>
-                <td class="pizza-image"><img src="{{pizza.photo}}"/></td>
+                <td>{{pizza.Name}}</td>
+                <td>{{pizza.Price}}</td>
+                <td>{{pizza.Diameter}}</td>
+                <td class="pizza-image"><img src="{{pizza.Photo}}"/></td>
                 <td>
                     <span class="ingredients-viewer" ng-click="showPopup()">Show Ingredients</span>
                     <div class="ingredients-popup">

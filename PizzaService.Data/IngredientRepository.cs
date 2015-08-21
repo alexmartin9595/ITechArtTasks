@@ -10,11 +10,23 @@ namespace PizzaService.Data
     public class IngredientRepository
     {
         private PizzaSericeContext context;
+        private static IngredientRepository instance;
 
-        public IngredientRepository()
+        private IngredientRepository()
         {
             context = new PizzaSericeContext();
         }
+
+        public static IngredientRepository Instance 
+        {
+            get
+            {
+                if (instance == null)
+                    instance = new IngredientRepository();
+                return instance;
+            }
+        }
+
         public IEnumerable<Ingredient> GetAllIngredients()
         {
             return context.Ingredients;

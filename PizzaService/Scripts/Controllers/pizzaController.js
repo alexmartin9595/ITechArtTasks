@@ -3,16 +3,22 @@
     
     var restaurantApp = angular.module('restaurantApp');
     
-    function callback ($scope, pizzaService, ingredientService, orderService) {
-        $scope.pizza = pizzaService.getPizza();
+    function callback($scope, pizzaService, ingredientService, orderService) {
+        var promisePizza = pizzaService.getPizza();
+
+        promisePizza.then(function(response) {
+            $scope.pizza = response.data;
+            console.log($scope.pizza);
+        });
+        
         $scope.getPizzaPriceById = pizzaService.getPizzaPriceById;
 
-        $scope.getIngredientBiId = function(id) {
-            var promiseFunction = ingredientService.getIngredientById;
-            promiseFunction.then(function(response) {
+        //$scope.getIngredientBiId = function(id) {
+        //    var promiseFunction = ingredientService.getIngredientById;
+        //    promiseFunction.then(function(response) {
 
-            });
-        }
+        //    });
+        //}
 
         $scope.addPizza = pizzaService.addPizza;
         $scope.getPriceById = ingredientService.getPriceById;
