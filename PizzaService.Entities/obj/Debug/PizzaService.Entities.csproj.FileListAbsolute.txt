@@ -1,0 +1,7 @@
+D:\Tasks\task8\PizzaService\PizzaService.Entities\bin\Debug\PizzaService.Entities.dll
+D:\Tasks\task8\PizzaService\PizzaService.Entities\bin\Debug\PizzaService.Entities.pdb
+D:\Tasks\task8\PizzaService\PizzaService.Entities\bin\Debug\Newtonsoft.Json.dll
+D:\Tasks\task8\PizzaService\PizzaService.Entities\bin\Debug\Newtonsoft.Json.xml
+D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.csprojResolveAssemblyReference.cache
+D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.dll
+D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.pdb

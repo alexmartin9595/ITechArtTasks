@@ -1,0 +1,218 @@
+﻿body {
+    background: url("../Images/background.jpg") repeat-y;
+    background-size:100%;
+    color:#000000;
+
+    font-family:Reklame;
+    font-size:18px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    background: url("../Images/wrapper-background.gif") repeat-y;
+    background-size:100%;
+
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.content {    
+    display:table;
+}
+
+.pizza {
+	color:#000000;
+    
+    vertical-align: top;
+    display: table-cell;
+}
+
+.ingredients {   
+    background-color: #252525;
+    color:#252525;
+       
+    display:none;
+}
+
+.ingredients ul {
+     background-color:#c7e5e4;    
+     display:inline-block;
+}
+
+.order-sum {
+	color:#ffffff;
+	
+	margin: 20px;
+	
+	font-size:22px;
+    text-align: left;
+}
+
+h2 {
+    color: #ffffff;
+
+    margin:20px;
+
+    font-size:24px;
+}
+
+h3 {
+    color: #ffffff;
+    
+    margin:10px 20px;
+}
+
+th {
+    background-color:#FFCF73;   
+
+    padding:10px;
+}
+
+table {
+    margin:20px;   
+}
+
+td {
+     background-color:#238E86;
+	 color:#e3e3e3;
+	
+	 border: 2px solid #d3d3d3;	 
+
+     padding:15px 20px;
+	 vertical-align:middle;
+}
+
+.add {
+    background:none;
+
+    border:0;
+}
+
+.delete {
+    background:none;
+
+    border:0;
+}
+
+button {
+    background-color:#BD2F36;
+    color:#ffffff;
+
+    border-radius:5px;
+    border:0;
+    cursor:pointer;
+
+    padding:10px 15px;
+
+    font-family:Reklame;
+}
+
+.confirm {
+	margin: 20px;
+	
+	font-size: 22px;
+}
+
+.navbutton {
+	margin: 20px;
+	padding: 10px 20px;
+	
+	font-size:22px;
+}
+
+.orders {
+    color:#252525;
+
+    display:table-cell;
+}
+
+.pizza-image {
+	background-color:#252525;   
+}
+
+.pizza-image img {    
+	width: 180px;
+	height: 120px;    
+    
+    margin: 0;
+}
+
+.ingredients-viewer {
+	cursor:pointer;
+}
+
+.ingredients-viewer:hover {
+	text-decoration:underline;
+}
+
+.ingredients-popup {
+	color: #000000;
+    background-color: #252525;
+	
+	display: none;
+}
+
+.order-ingredients-popup {
+    color: #000000;
+    background-color: #252525;
+	
+	display: none;
+}
+
+.button {
+    background: none;
+    
+    cursor: pointer;
+    font-family: FontAwesome;
+    font-size: 32px;
+}
+
+.remove {
+    color:#F16970;
+}
+
+.more {
+    color:#56C7BE;
+}
+
+.less {
+    color:#F3D08E;
+}
+
+.edit {
+    color: #74C7C0;
+}

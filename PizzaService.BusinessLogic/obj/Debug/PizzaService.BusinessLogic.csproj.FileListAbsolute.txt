@@ -1,0 +1,13 @@
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.BusinessLogic.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.BusinessLogic.pdb
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.Data.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.Entities.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\EntityFramework.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\Newtonsoft.Json.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.Data.pdb
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\PizzaService.Entities.pdb
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\EntityFramework.xml
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\bin\Debug\Newtonsoft.Json.xml
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\obj\Debug\PizzaService.BusinessLogic.csprojResolveAssemblyReference.cache
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\obj\Debug\PizzaService.BusinessLogic.dll
+D:\Tasks\task8\PizzaService\PizzaService.BusinessLogic\obj\Debug\PizzaService.BusinessLogic.pdb

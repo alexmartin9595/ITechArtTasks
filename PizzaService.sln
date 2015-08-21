@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaService", "PizzaService\PizzaService.csproj", "{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaService.Entities", "PizzaService.Entities\PizzaService.Entities.csproj", "{239E6F3A-9207-4E65-84FB-850E20C16D14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaService.Data", "PizzaService.Data\PizzaService.Data.csproj", "{E761A2E8-4D62-4E08-9829-7AD4B866B391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PizzaService.BusinessLogic", "PizzaService.BusinessLogic\PizzaService.BusinessLogic.csproj", "{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{BACD89D6-482B-425E-95FF-2A3D37759A06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{ABE1FF64-A597-45CB-92D4-EBC59E1E3DD4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9FFF765E-04CB-4E71-A951-925AF560D33D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{6D5FB83E-9508-4277-98DD-7F54CB4A2930}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{239E6F3A-9207-4E65-84FB-850E20C16D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{239E6F3A-9207-4E65-84FB-850E20C16D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{239E6F3A-9207-4E65-84FB-850E20C16D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{239E6F3A-9207-4E65-84FB-850E20C16D14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E761A2E8-4D62-4E08-9829-7AD4B866B391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E761A2E8-4D62-4E08-9829-7AD4B866B391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E761A2E8-4D62-4E08-9829-7AD4B866B391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E761A2E8-4D62-4E08-9829-7AD4B866B391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8394372C-7DD0-4DCB-8662-EFCB6FACBE12}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B7E08A3D-F582-48FF-89D6-F10B57E4D7C1} = {BACD89D6-482B-425E-95FF-2A3D37759A06}
+		{8394372C-7DD0-4DCB-8662-EFCB6FACBE12} = {ABE1FF64-A597-45CB-92D4-EBC59E1E3DD4}
+		{E761A2E8-4D62-4E08-9829-7AD4B866B391} = {9FFF765E-04CB-4E71-A951-925AF560D33D}
+		{239E6F3A-9207-4E65-84FB-850E20C16D14} = {6D5FB83E-9508-4277-98DD-7F54CB4A2930}
+	EndGlobalSection
+EndGlobal

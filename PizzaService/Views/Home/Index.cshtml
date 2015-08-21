@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<button class="navbutton" ng-controller="IngredientsController" ng-click="createPizza()">Create pizza</button>
+<div class="content">
+    <div ng-controller="PizzaController" class="pizza">
+        <h2>Pizza</h2>
+        <table>
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Diameter</th>
+                <th>Photo</th>
+                <th><span>Composition</span></th>
+            </tr>
+            <tr ng-repeat="pizza in pizza">
+                <td>{{$index + 1}}</td>
+                <td>{{pizza.name}}</td>
+                <td>{{getPizzaPriceById($index)}}</td>
+                <td>{{pizza.diameter}}</td>
+                <td class="pizza-image"><img src="{{pizza.photo}}"/></td>
+                <td>
+                    <span class="ingredients-viewer" ng-click="showPopup()">Show Ingredients</span>
+                    <div class="ingredients-popup">
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Photo</th>
+                                <th>Price</th>
+                                <th>Count</th>
+                            </tr>
+                            <tr ng-repeat="ingredient in pizza.ingredients">
+                                <td>{{getNameById(ingredient.id)}}</td>
+                                <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}"/></td>
+                                <td>{{getPriceById(ingredient.id)}}</td>
+                                <td>{{ingredient.count}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td class="add"><button ng-click="createCustomOrder(pizza)">Add</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-controller="IngredientsController" class="ingredients">
+        <h2>Ingredients</h2>
+        <div>
+            <h3></h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Weight</th>
+                    <th>Photo</th>
+                    <th>Price</th>
+                </tr>
+                <tr ng-repeat="item in model">
+                    <td>{{item.Name}}</td>
+                    <td>{{item.Weight}}</td>
+                    <td class="pizza-image"><img src="{{item.Photo}}" /></td>
+                    <td>{{item.Price}}</td>
+                    <td class="add"><button ng-click="addIngredient(kind)">Add</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div ng-controller="OrderController" class="orders">
+        <div class="order-list" ng-show="order.pizza.length > 0">
+            <h2>Order</h2>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Composition</th>
+                    <th>Count</th>
+                </tr>
+                <tr ng-repeat="item in order.pizza">
+                    <td>{{$index + 1}}</td>
+                    <td>{{item.name}}</td>
+                    <td>
+                        <span class="ingredients-viewer" ng-click="showIngredients($index)">Show Ingredients</span>
+                    </td>
+                    <td>{{item.count}}</td>
+                    <td class="delete"><span class="button remove" title="remove" ng-click="deleteOrder($index)">&#xf00d</span></td>
+                    <td class="delete"><span class="button edit" title="edit" ng-click="openOrderEditor($index)">&#xf044;</span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="order-ingredients-popup">
+            <h3>Indgredients</h3>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Photo</th>
+                    <th>Price</th>
+                    <th>Count</th>
+                </tr>
+                <tr ng-repeat="ingredient in currentPizza.ingredients">
+                    <td>{{getNameById(ingredient.id)}}</td>
+                    <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}"/></td>
+                    <td>{{getPriceById(ingredient.id)}}</td>
+                    <td>{{ingredient.count}}</td>
+                    <td class="delete"><span class="button remove" ng-click="deleteIngredient(ingredient)">&#xf00d;</span></td>
+                    <td class="delete"><span class="button more" ng-click="incrementIngredient(ingredient)">&#xf062;</span></td>
+                    <td class="delete"><span class="button less" ng-click="decrementIngredient(ingredient)">&#xf063;</span></td>
+                </tr>
+            </table>
+        </div>
+        <p class="order-sum" ng-show="order.sum > 0">Order price {{order.sum}}</p>
+        <button ng-show="order.sum > 0" class="confirm" ng-click="confirmOrder()">Confirm Order</button>
+    </div>
+</div>
