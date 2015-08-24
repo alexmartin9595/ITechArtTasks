@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 using Newtonsoft.Json;
 
 namespace PizzaService.Entities
@@ -20,8 +21,7 @@ namespace PizzaService.Entities
 
         [ForeignKey("UserId")]
         public virtual ServiceUser ServiceUser { get; set; }
-
-        [JsonIgnore]
-        public virtual ICollection<Pizza> Pizzas { get; set; }
+        
+        public virtual ICollection<PizzaToOrder> PizzaToOrder { get; set; }
     }
 }

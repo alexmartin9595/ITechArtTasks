@@ -4,11 +4,9 @@ D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\PizzaService.Data.pdb
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\EntityFramework.dll
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\EntityFramework.SqlServer.dll
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\PizzaService.Entities.dll
-D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\Newtonsoft.Json.dll
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\PizzaService.Entities.pdb
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\EntityFramework.xml
 D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\EntityFramework.SqlServer.xml
-D:\Tasks\task8\PizzaService\PizzaService.Data\bin\Debug\Newtonsoft.Json.xml
 D:\Tasks\task8\PizzaService\PizzaService.Data\obj\Debug\PizzaService.Data.csprojResolveAssemblyReference.cache
 D:\Tasks\task8\PizzaService\PizzaService.Data\obj\Debug\PizzaService.Data.dll
 D:\Tasks\task8\PizzaService\PizzaService.Data\obj\Debug\PizzaService.Data.pdb

@@ -31,7 +31,7 @@ namespace PizzaService.Data
 
         public IEnumerable<Pizza> GetAllPizza()
         {
-            return context.Pizzas.Include("PizzaIngredients").ToList();
+            return context.Pizzas;
         }
 
         public Pizza GetPizzaById(int id)

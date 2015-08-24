@@ -31,7 +31,7 @@
                                 <th>Price</th>
                                 <th>Count</th>
                             </tr>
-                            <tr ng-repeat="ingredient in pizza.ingredients">
+                            <tr ng-repeat="ingredient in pizza.PizzaIngredients">
                                 <td>{{getNameById(ingredient.id)}}</td>
                                 <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}"/></td>
                                 <td>{{getPriceById(ingredient.id)}}</td>

@@ -37,6 +37,11 @@ namespace PizzaService.Data
             return context.PizzaIngredients.FirstOrDefault(x => x.PizzaId == pizzaId && x.IngredientId == ingredientId);
         }
 
+        public IEnumerable<PizzaIngredient> GetPizzaIngredients(Pizza pizza)
+        {
+            return context.PizzaIngredients.Where(x => x.PizzaId == pizza.Id);
+        }
+
         public void AddPizzaIngredient(int pizzaId, Ingredient ingredient)
         {
             PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredient.Id);
