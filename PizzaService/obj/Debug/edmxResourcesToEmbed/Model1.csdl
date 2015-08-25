@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ingredient">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Family" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PizzaIngredients" Relationship="Self.FK_dbo_PizzaIngredients_dbo_Ingredients_IngredientId" FromRole="Ingredients" ToRole="PizzaIngredients" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ServiceUser" Relationship="Self.FK_dbo_Orders_dbo_ServiceUsers_UserId" FromRole="Orders" ToRole="ServiceUsers" />
+    <NavigationProperty Name="PizzaToOrders" Relationship="Self.FK_dbo_PizzaToOrders_dbo_Orders_OrderId" FromRole="Orders" ToRole="PizzaToOrders" />
+  </EntityType>
+  <EntityType Name="Pizza">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Diameter" Type="Int32" Nullable="false" />
+    <Property Name="Weight" Type="Int32" Nullable="false" />
+    <Property Name="IsCustom" Type="Boolean" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PizzaIngredients" Relationship="Self.FK_dbo_PizzaIngredients_dbo_Pizzas_PizzaId" FromRole="Pizzas" ToRole="PizzaIngredients" />
+    <NavigationProperty Name="PizzaToOrders" Relationship="Self.FK_dbo_PizzaToOrders_dbo_Pizzas_PizzaId" FromRole="Pizzas" ToRole="PizzaToOrders" />
+  </EntityType>
+  <EntityType Name="PizzaToOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PizzaId" Type="Int32" Nullable="false" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_dbo_PizzaToOrders_dbo_Orders_OrderId" FromRole="PizzaToOrders" ToRole="Orders" />
+    <NavigationProperty Name="Pizza" Relationship="Self.FK_dbo_PizzaToOrders_dbo_Pizzas_PizzaId" FromRole="PizzaToOrders" ToRole="Pizzas" />
+  </EntityType>
+  <EntityType Name="ServiceUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_dbo_Orders_dbo_ServiceUsers_UserId" FromRole="ServiceUsers" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="PizzaIngredient">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="PizzaId" />
+      <PropertyRef Name="IngredientId" />
+      <PropertyRef Name="Count" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PizzaId" Type="Int32" Nullable="false" />
+    <Property Name="IngredientId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Ingredient" Relationship="Self.FK_dbo_PizzaIngredients_dbo_Ingredients_IngredientId" FromRole="PizzaIngredients" ToRole="Ingredients" />
+    <NavigationProperty Name="Pizza" Relationship="Self.FK_dbo_PizzaIngredients_dbo_Pizzas_PizzaId" FromRole="PizzaIngredients" ToRole="Pizzas" />
+  </EntityType>
+  <Association Name="FK_dbo_PizzaIngredients_dbo_Ingredients_IngredientId">
+    <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1" />
+    <End Role="PizzaIngredients" Type="Self.PizzaIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ingredients">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PizzaIngredients">
+        <PropertyRef Name="IngredientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Orders_dbo_ServiceUsers_UserId">
+    <End Role="ServiceUsers" Type="Self.ServiceUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PizzaToOrders_dbo_Orders_OrderId">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="PizzaToOrders" Type="Self.PizzaToOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PizzaToOrders">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PizzaIngredients_dbo_Pizzas_PizzaId">
+    <End Role="Pizzas" Type="Self.Pizza" Multiplicity="1" />
+    <End Role="PizzaIngredients" Type="Self.PizzaIngredient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pizzas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PizzaIngredients">
+        <PropertyRef Name="PizzaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PizzaToOrders_dbo_Pizzas_PizzaId">
+    <End Role="Pizzas" Type="Self.Pizza" Multiplicity="1" />
+    <End Role="PizzaToOrders" Type="Self.PizzaToOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pizzas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PizzaToOrders">
+        <PropertyRef Name="PizzaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Entities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="Pizzas" EntityType="Self.Pizza" />
+    <EntitySet Name="PizzaToOrders" EntityType="Self.PizzaToOrder" />
+    <EntitySet Name="ServiceUsers" EntityType="Self.ServiceUser" />
+    <EntitySet Name="PizzaIngredients" EntityType="Self.PizzaIngredient" />
+    <AssociationSet Name="FK_dbo_PizzaIngredients_dbo_Ingredients_IngredientId" Association="Self.FK_dbo_PizzaIngredients_dbo_Ingredients_IngredientId">
+      <End Role="Ingredients" EntitySet="Ingredients" />
+      <End Role="PizzaIngredients" EntitySet="PizzaIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Orders_dbo_ServiceUsers_UserId" Association="Self.FK_dbo_Orders_dbo_ServiceUsers_UserId">
+      <End Role="ServiceUsers" EntitySet="ServiceUsers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PizzaToOrders_dbo_Orders_OrderId" Association="Self.FK_dbo_PizzaToOrders_dbo_Orders_OrderId">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="PizzaToOrders" EntitySet="PizzaToOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PizzaIngredients_dbo_Pizzas_PizzaId" Association="Self.FK_dbo_PizzaIngredients_dbo_Pizzas_PizzaId">
+      <End Role="Pizzas" EntitySet="Pizzas" />
+      <End Role="PizzaIngredients" EntitySet="PizzaIngredients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PizzaToOrders_dbo_Pizzas_PizzaId" Association="Self.FK_dbo_PizzaToOrders_dbo_Pizzas_PizzaId">
+      <End Role="Pizzas" EntitySet="Pizzas" />
+      <End Role="PizzaToOrders" EntitySet="PizzaToOrders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

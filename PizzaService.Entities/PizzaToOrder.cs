@@ -10,8 +10,6 @@ namespace PizzaService.Entities
 {
     public class PizzaToOrder
     {
-        [Key]
-        public int Id { get; set; }
 
         [ForeignKey("Pizza")]
         public int PizzaId { get; set; }

@@ -21,5 +21,7 @@ namespace PizzaService.Entities
         public string Photo { get; set; }
 
         public string Family { get; set; }
+
+        public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
     }
 }

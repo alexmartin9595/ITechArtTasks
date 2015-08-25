@@ -15,8 +15,6 @@ namespace PizzaService.Data
         private PizzaRepository()
         {
             context = new PizzaSericeContext();
-            context.Configuration.LazyLoadingEnabled = true;
-            context.Configuration.ProxyCreationEnabled = false;
         }
 
         public static PizzaRepository Instance 
@@ -31,7 +29,7 @@ namespace PizzaService.Data
 
         public IEnumerable<Pizza> GetAllPizza()
         {
-            return context.Pizzas;
+            return context.Pizzas.Include("PizzaIngredients").ToList();
         }
 
         public Pizza GetPizzaById(int id)

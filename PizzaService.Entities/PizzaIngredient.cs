@@ -10,19 +10,17 @@ namespace PizzaService.Entities
 {
     public class PizzaIngredient
     {
-        [Key]
-        public int Id { get; set; }
-
+        
+        [ForeignKey("Pizza")]
         public int PizzaId { get; set; }
 
+        [ForeignKey("Ingredient")]
         public int IngredientId { get; set; }
 
         public int Count { get; set; }
-
-        [ForeignKey("IngredientId")]
+        
         public virtual Ingredient Ingredient { get; set; }
-
-        [ForeignKey("PizzaId")]
+        
         public virtual Pizza Pizza { get; set; }
     }
 }

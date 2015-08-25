@@ -26,11 +26,6 @@ namespace PizzaService.Entities
         public int Weight { get; set; }
 
         public bool IsCustom { get; set; }
-
-        public int? UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual ServiceUser ServiceUser { get; set; }
        
         public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
        

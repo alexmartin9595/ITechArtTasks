@@ -10,8 +10,43 @@ namespace PizzaService.Data
 {
     public class PizzaSericeContext : DbContext
     {
-        public PizzaSericeContext() : base("DefaultConnection") { }
+        public PizzaSericeContext() : base("DefaultConnection")
+        {
+            this.Configuration.ProxyCreationEnabled = false;
+        }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PizzaIngredient>().HasKey(t => new { t.IngredientId, t.PizzaId });
+
+            modelBuilder.Entity<PizzaToOrder>().HasKey(t => new { t.OrderId, t.PizzaId });
+
+            modelBuilder.Entity<Pizza>()
+                        .HasMany(s => s.PizzaIngredients)
+                        .WithRequired(s => s.Pizza)
+                        .HasForeignKey(s => s.PizzaId);
+
+            //modelBuilder.Entity<Ingredient>()
+            //    .HasMany(s => s.PizzaIngredients)
+            //    .WithRequired(s => s.Ingredient)
+            //    .HasForeignKey(s => s.IngredientId);
+
+            //modelBuilder.Entity<Pizza>()
+            //    .HasMany(c => c.PizzaIngredients)
+            //    .WithOptional()
+            //    .Map(m => m.MapKey("PizzaId"));
+
+
+            //modelBuilder.Entity<PizzaIngredient>()
+            //  .HasKey(e => e.IngredientId);
+
+            //modelBuilder.Entity<Ingredient>()
+            //            .HasOptional(s => s.PizzaIngredient)
+            //            .WithRequired(ad => ad.Ingredient);
+
+        }
+        
+        
         public DbSet<Pizza> Pizzas { get; set; }
 
         public DbSet<Ingredient> Ingredients { get; set; }
@@ -19,6 +54,8 @@ namespace PizzaService.Data
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<PizzaIngredient> PizzaIngredients { get; set; }
+
+        public DbSet<PizzaToOrder> PizzaToOrders { get; set; }
 
         public DbSet<ServiceUser> ServiceUsers { get; set; }
     }
