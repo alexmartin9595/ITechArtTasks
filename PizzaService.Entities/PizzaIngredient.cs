@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace PizzaService.Entities
 {
@@ -18,9 +19,11 @@ namespace PizzaService.Entities
         public int IngredientId { get; set; }
 
         public int Count { get; set; }
-        
+
+        [ScriptIgnore]
         public virtual Ingredient Ingredient { get; set; }
         
+        [ScriptIgnore]
         public virtual Pizza Pizza { get; set; }
     }
 }

@@ -10,6 +10,13 @@
             $scope.pizza = response.data;
             console.log($scope.pizza);
         });
+
+        $scope.getIngredientById = function(id) {
+            var promiseIngredient = ingredientService.getIngredientById(id);
+            promiseIngredient.then(function(response) {
+                $scope.pizzaIngredient = response.data;
+            });
+        }
         
         $scope.getPizzaPriceById = pizzaService.getPizzaPriceById;
 

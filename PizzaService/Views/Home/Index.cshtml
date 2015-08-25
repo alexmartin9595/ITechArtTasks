@@ -32,10 +32,10 @@
                                 <th>Count</th>
                             </tr>
                             <tr ng-repeat="ingredient in pizza.PizzaIngredients">
-                                <td>{{getNameById(ingredient.id)}}</td>
-                                <td class="pizza-image"><img src="{{getPhotoById(ingredient.id)}}"/></td>
-                                <td>{{getPriceById(ingredient.id)}}</td>
-                                <td>{{ingredient.count}}</td>
+                                <td>{{getIngredientById(ingredient.IngredientId).Name}}</td>
+                                <td class="pizza-image"><img src="{{getIngredientById(ingredient.IngredientId).Photo}}" /></td>
+                                <td>{{getIngredientById(ingredient.IngredientId).Price}}</td>
+                                <td>{{getIngredientById(ingredient.IngredientId).Count}}</td>
                             </tr>
                         </table>
                     </div>

@@ -34,7 +34,10 @@ namespace PizzaService.Data
 
         public Ingredient GetIngredientById(int id)
         {
-            return context.Ingredients.FirstOrDefault(x => x.Id == id);
+            using (var currentcontext = new PizzaSericeContext())
+            {
+                return currentcontext.Ingredients.FirstOrDefault(x => x.Id == id);    
+            }
         }
 
         public void AddIngredient(Ingredient ingredient)

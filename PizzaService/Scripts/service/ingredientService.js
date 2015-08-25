@@ -7,6 +7,10 @@
         return {
             getIngredients: function () {
                 return $http.get("/Home/GetAllIngredients");
+            },
+
+            getIngredientById: function(id) {
+                return $http.get("/Home/GetIngredientById/" + id)
             }
             //getIngredientById: function(id) {
             //    return $http.get("/Home/GetIngredientById" + id);

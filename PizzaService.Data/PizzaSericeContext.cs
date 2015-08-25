@@ -26,24 +26,10 @@ namespace PizzaService.Data
                         .WithRequired(s => s.Pizza)
                         .HasForeignKey(s => s.PizzaId);
 
-            //modelBuilder.Entity<Ingredient>()
-            //    .HasMany(s => s.PizzaIngredients)
-            //    .WithRequired(s => s.Ingredient)
-            //    .HasForeignKey(s => s.IngredientId);
-
-            //modelBuilder.Entity<Pizza>()
-            //    .HasMany(c => c.PizzaIngredients)
-            //    .WithOptional()
-            //    .Map(m => m.MapKey("PizzaId"));
-
-
-            //modelBuilder.Entity<PizzaIngredient>()
-            //  .HasKey(e => e.IngredientId);
-
-            //modelBuilder.Entity<Ingredient>()
-            //            .HasOptional(s => s.PizzaIngredient)
-            //            .WithRequired(ad => ad.Ingredient);
-
+            modelBuilder.Entity<Ingredient>()
+                .HasMany(s => s.PizzaIngredients)
+                .WithRequired(s => s.Ingredient)
+                .HasForeignKey(s => s.IngredientId);
         }
         
         

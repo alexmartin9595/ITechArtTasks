@@ -41,8 +41,8 @@ namespace PizzaService.Controllers
         [HttpGet]
         public ActionResult GetIngredientById(int id)
         {
-            Ingredient ingredients = IngredientRepository.Instance.GetIngredientById(id);
-            return Json(ingredients, JsonRequestBehavior.AllowGet);
+            Ingredient ingredient = IngredientRepository.Instance.GetIngredientById(id);
+            return Json(ingredient, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

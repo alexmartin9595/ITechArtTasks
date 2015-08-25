@@ -178,9 +178,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508250804172_Migrate.cs" />
-    <Compile Include="Migrations\201508250804172_Migrate.Designer.cs">
-      <DependentUpon>201508250804172_Migrate.cs</DependentUpon>
+    <Compile Include="Migrations\201508250829437_asasasas.cs" />
+    <Compile Include="Migrations\201508250829437_asasasas.Designer.cs">
+      <DependentUpon>201508250829437_asasasas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.Context.cs">
@@ -342,8 +342,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508250804172_Migrate.resx">
-      <DependentUpon>201508250804172_Migrate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201508250829437_asasasas.resx">
+      <DependentUpon>201508250829437_asasasas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -26,7 +26,7 @@ namespace PizzaService.Entities
         public int Weight { get; set; }
 
         public bool IsCustom { get; set; }
-       
+               
         public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
        
         public virtual ICollection<PizzaToOrder> PizzaToOrder { get; set; }
