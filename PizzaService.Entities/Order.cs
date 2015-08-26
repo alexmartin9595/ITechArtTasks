@@ -19,6 +19,8 @@ namespace PizzaService.Entities
 
         public int UserId { get; set; }
 
+        public bool IsConfirmed { get; set; }
+
         [ForeignKey("UserId")]
         public virtual ServiceUser ServiceUser { get; set; }
         

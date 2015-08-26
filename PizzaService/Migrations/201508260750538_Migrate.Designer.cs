@@ -7,13 +7,13 @@ namespace PizzaService.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class asasasas : IMigrationMetadata
+    public sealed partial class Migrate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(asasasas));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Migrate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201508250829437_asasasas"; }
+            get { return "201508260750538_Migrate"; }
         }
         
         string IMigrationMetadata.Source

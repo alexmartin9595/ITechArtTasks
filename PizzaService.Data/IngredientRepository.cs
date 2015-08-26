@@ -9,13 +9,9 @@ namespace PizzaService.Data
 {
     public class IngredientRepository
     {
-        private PizzaSericeContext context;
         private static IngredientRepository instance;
 
-        private IngredientRepository()
-        {
-            context = new PizzaSericeContext();
-        }
+        private IngredientRepository() {}
 
         public static IngredientRepository Instance 
         {
@@ -29,7 +25,10 @@ namespace PizzaService.Data
 
         public IEnumerable<Ingredient> GetAllIngredients()
         {
-            return context.Ingredients;
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Ingredients.ToList();    
+            }            
         }
 
         public Ingredient GetIngredientById(int id)
@@ -40,11 +39,30 @@ namespace PizzaService.Data
             }
         }
 
+        public IEnumerable<Ingredient> GetIngredientsByPizzaId(int pizzaId)
+        {
+            using (var currentcontext = new PizzaSericeContext())
+            {
+                IEnumerable<PizzaIngredient> pizzaIngredients =
+                    PizzaIngredientRepository.Instance.GetPizzaIngredients(pizzaId);
+                List<Ingredient> ingredients = new List<Ingredient>();
+                foreach (var pizzaIngredient in pizzaIngredients)
+                {
+                    Ingredient ingredient = currentcontext.Ingredients.FirstOrDefault(i => i.Id == pizzaIngredient.IngredientId);
+                    ingredients.Add(ingredient);
+                }
+                return ingredients;
+            }
+        }
+
         public void AddIngredient(Ingredient ingredient)
         {
-            context.Ingredients.Add(ingredient);
-            context.SaveChanges();
-         
+            using (var currentContext = new PizzaSericeContext())
+            {
+                currentContext.Ingredients.Add(ingredient);
+                currentContext.SaveChanges();
+            }
+
         }
     }
 }

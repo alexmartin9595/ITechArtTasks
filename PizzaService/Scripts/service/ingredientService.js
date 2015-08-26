@@ -10,7 +10,11 @@
             },
 
             getIngredientById: function(id) {
-                return $http.get("/Home/GetIngredientById/" + id)
+                return $http.get("/Home/GetIngredientById/" + id);
+            },
+
+            getPizzaIngredients: function(pizzaId) {
+                return $http.get("/Home/GetPizzaIngredients/" + pizzaId);
             }
             //getIngredientById: function(id) {
             //    return $http.get("/Home/GetIngredientById" + id);

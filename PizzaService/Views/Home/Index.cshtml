@@ -20,9 +20,9 @@
                 <td>{{pizza.Name}}</td>
                 <td>{{pizza.Price}}</td>
                 <td>{{pizza.Diameter}}</td>
-                <td class="pizza-image"><img src="{{pizza.Photo}}"/></td>
+                <td class="pizza-image"><img src="{{pizza.Photo}}" /></td>
                 <td>
-                    <span class="ingredients-viewer" ng-click="showPopup()">Show Ingredients</span>
+                    <span class="ingredients-viewer" ng-click="showPopup(pizza.Id)">Show Ingredients</span>
                     <div class="ingredients-popup">
                         <table>
                             <tr>
@@ -31,16 +31,16 @@
                                 <th>Price</th>
                                 <th>Count</th>
                             </tr>
-                            <tr ng-repeat="ingredient in pizza.PizzaIngredients">
-                                <td>{{getIngredientById(ingredient.IngredientId).Name}}</td>
-                                <td class="pizza-image"><img src="{{getIngredientById(ingredient.IngredientId).Photo}}" /></td>
-                                <td>{{getIngredientById(ingredient.IngredientId).Price}}</td>
-                                <td>{{getIngredientById(ingredient.IngredientId).Count}}</td>
+                            <tr ng-repeat="ingredient in pizzaIngredients">
+                                <td>{{ingredient.Name}}</td>
+                                <td class="pizza-image"><img src="{{ingredient.Photo}}" /></td>
+                                <td>{{ingredient.Price}}</td>
+                                <td>{{ingredient.Count}}</td>
                             </tr>
                         </table>
                     </div>
                 </td>
-                <td class="add"><button ng-click="createCustomOrder(pizza)">Add</button></td>
+                <td class="add"><button ng-click="addPizza(pizza)">Add</button></td>
             </tr>
         </table>
     </div>

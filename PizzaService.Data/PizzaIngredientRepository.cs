@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,10 @@ namespace PizzaService.Data
 
         public IEnumerable<PizzaIngredient> GetAllPizzaIngredients(int pizzaId)
         {
-            return context.PizzaIngredients.Where(x => x.PizzaId == pizzaId);
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.PizzaIngredients.Where(x => x.PizzaId == pizzaId).ToList();   
+            }
         }
 
         public PizzaIngredient GetPizzaIngredientById(int pizzaId, int ingredientId)
@@ -37,9 +41,9 @@ namespace PizzaService.Data
             return context.PizzaIngredients.FirstOrDefault(x => x.PizzaId == pizzaId && x.IngredientId == ingredientId);
         }
 
-        public IEnumerable<PizzaIngredient> GetPizzaIngredients(Pizza pizza)
+        public IEnumerable<PizzaIngredient> GetPizzaIngredients(int pizzaId)
         {
-            return context.PizzaIngredients.Where(x => x.PizzaId == pizza.Id);
+            return context.PizzaIngredients.Where(x => x.PizzaId == pizzaId).ToList();
         }
 
         public void AddPizzaIngredient(int pizzaId, Ingredient ingredient)

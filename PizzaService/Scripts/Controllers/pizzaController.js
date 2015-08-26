@@ -4,6 +4,7 @@
     var restaurantApp = angular.module('restaurantApp');
     
     function callback($scope, pizzaService, ingredientService, orderService) {
+       
         var promisePizza = pizzaService.getPizza();
 
         promisePizza.then(function(response) {
@@ -11,29 +12,27 @@
             console.log($scope.pizza);
         });
 
-        $scope.getIngredientById = function(id) {
-            var promiseIngredient = ingredientService.getIngredientById(id);
-            promiseIngredient.then(function(response) {
-                $scope.pizzaIngredient = response.data;
+        $scope.getPizzaIngredients = function (pizzaId) {
+            var promiseIngredients = ingredientService.getPizzaIngredients(pizzaId);
+            promiseIngredients.then(function(response) {
+                $scope.pizzaIngredients = response.data;
+                console.log($scope.pizzaIngredients);
             });
         }
-        
-        $scope.getPizzaPriceById = pizzaService.getPizzaPriceById;
 
-        //$scope.getIngredientBiId = function(id) {
-        //    var promiseFunction = ingredientService.getIngredientById;
-        //    promiseFunction.then(function(response) {
-
-        //    });
-        //}
-
-        $scope.addPizza = pizzaService.addPizza;
+        $scope.addPizza = function (pizza) {
+            var promisedPizza = pizzaService.addPizza(pizza);
+            promisedPizza.then(function () {
+                 alert("Pizza added successfully");
+             });
+        }
         $scope.getPriceById = ingredientService.getPriceById;
         $scope.getNameById = ingredientService.getNameById;
         $scope.getPhotoById = ingredientService.getPhotoById;
         $scope.createCustomOrder = orderService.createCustomOrder;
     
-        $scope.showPopup = function () {
+        $scope.showPopup = function (id) {
+            $scope.getPizzaIngredients(id);
             $('.ingredients-popup').bPopup({
                 follow: [false, false], 
                 position: [500, 100] 

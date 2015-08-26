@@ -37,10 +37,36 @@ namespace PizzaService.Data
             return context.Orders.Where(x => x.UserId == userId).FirstOrDefault(x => x.Id == orderId);
         }
 
+        public Order GetUnConfirmedOrder(int userId)
+        {
+            return context.Orders.FirstOrDefault(o => o.IsConfirmed == false);
+        }
+
         public void AddOrder(Order order)
         {
-            context.Orders.Add(order);
-            context.SaveChanges();
+            using (var currentContex = new PizzaSericeContext())
+            {
+                currentContex.Orders.Add(order);
+                currentContex.SaveChanges();
+            }
+        }
+
+        public void AddPizzaToOrder(int userId, Pizza pizza)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Order currentOrder = GetUnConfirmedOrder(userId);
+                if (currentOrder == null)
+                {
+                    currentOrder = new Order { UserId = userId, Price = 0, IsConfirmed = false };
+                    AddOrder(currentOrder);
+                }
+
+                PizzaToOrderRepository.Instance.AddPizzaToOrder(currentOrder.Id, pizza);
+                currentOrder.Price += pizza.Price;
+                currentContext.SaveChanges();
+            }
+            
         }
 
         public void Delete(Order order)

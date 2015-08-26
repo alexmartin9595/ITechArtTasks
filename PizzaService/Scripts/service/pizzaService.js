@@ -32,6 +32,10 @@
             
             getPizza: function() {
                 return $http.get("/Home/GetAllPizza");
+            },
+
+            addPizza: function(data) {
+                return $http.post("/Home/AddPizzaToOrder", data);
             }
         }
     }

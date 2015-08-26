@@ -51,5 +51,19 @@ namespace PizzaService.Controllers
             IEnumerable<Pizza> pizza = PizzaRepository.Instance.GetAllPizza();
             return Json(pizza, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public ActionResult GetPizzaIngredients(int id)
+        {
+            IEnumerable<Ingredient> pizzaIngredients = IngredientRepository.Instance.GetIngredientsByPizzaId(id);
+            return Json(pizzaIngredients, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult AddPizzaToOrder(Pizza pizza)
+        {
+            OrderRepository.Instance.AddPizzaToOrder(1, pizza);
+            return Json(false);
+        }
     }
 }

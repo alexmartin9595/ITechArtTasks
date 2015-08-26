@@ -52,6 +52,7 @@
     <Compile Include="PizzaSericeContext.cs" />
     <Compile Include="IngredientRepository.cs" />
     <Compile Include="PizzaRepository.cs" />
+    <Compile Include="PizzaToOrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
