@@ -1,10 +1,17 @@
-﻿body {
+﻿@font-face {
+    font-family: "Reklame";     
+    src: url("../fonts/Reklame.otf");
+}
+
+body {
     background: url("../Images/background.jpg") repeat-y;
     background-size:100%;
-    color:#000000;
+    color:#ffffff;
 
     font-family:Reklame;
     font-size:18px;
+    font-weight: 700;
+
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -14,8 +21,13 @@
     background: url("../Images/wrapper-background.gif") repeat-y;
     background-size:100%;
 
+    min-width: 1350px;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+.modal-content {
+    z-index: 9999;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -58,7 +70,7 @@ input[type="checkbox"].input-validation-error {
 	color:#000000;
     
     vertical-align: top;
-    display: table-cell;
+    float: left;
 }
 
 .ingredients {   
@@ -88,16 +100,20 @@ h2 {
     margin:20px;
 
     font-size:24px;
+    font-family: "Reklame";
+    font-weight: 700;
 }
 
 h3 {
     color: #ffffff;
     
     margin:10px 20px;
+
+    font-family: "Reklame";
 }
 
 th {
-    background-color:#FFCF73;   
+    background-color:#FFDA95;   
 
     padding:10px;
 }
@@ -107,8 +123,8 @@ table {
 }
 
 td {
-     background-color:#238E86;
-	 color:#e3e3e3;
+     background-color:#74C7C1;
+	 color:#252525;
 	
 	 border: 2px solid #d3d3d3;	 
 
@@ -129,8 +145,8 @@ td {
 }
 
 button {
-    background-color:#BD2F36;
-    color:#ffffff;
+    background-color:#FC9398;
+    color:#000000;
 
     border-radius:5px;
     border:0;
@@ -139,6 +155,11 @@ button {
     padding:10px 15px;
 
     font-family:Reklame;
+    font-weight: 700;
+}
+
+button:hover {
+    background-color: #FEAEB2;
 }
 
 .confirm {
@@ -157,7 +178,8 @@ button {
 .orders {
     color:#252525;
 
-    display:table-cell;
+    float: left;
+    
 }
 
 .pizza-image {
@@ -202,17 +224,37 @@ button {
 }
 
 .remove {
-    color:#F16970;
+    color:#FC9398;
+}
+
+.remove:hover {
+    color:#FEC4C6;
 }
 
 .more {
-    color:#56C7BE;
+    color:#74C7C1;
+}
+
+.more:hover {
+    color:#AFE3DF;
 }
 
 .less {
-    color:#F3D08E;
+    color:#FFDA95;
+}
+
+.less:hover {
+    color:#FFEBC5;
 }
 
 .edit {
-    color: #74C7C0;
+    color: #74C7C1;
+}
+
+.edit:hover {
+    color: #AFE3DF;
+}
+
+footer {
+    font-family: Arial;
 }

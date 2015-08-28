@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link type="text/css" rel="stylesheet" href="~/fonts/font-awesome-4.4.0/css/font-awesome.min.css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,13 +18,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+                @Html.ActionLink("Pizza Service", "Index", "Home", null, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -56,6 +55,7 @@
     <script src="~/Scripts/Service/orderService.js"></script>
     <script src="~/Scripts/Service/ingredientService.js"></script>
     <script src="~/Scripts/Service/pizzaService.js"></script>
+    <script src="~/Scripts/Service/clientService.js"></script>
 
     <script src="~/Scripts/Controllers/ingredientsController.js"></script>
     <script src="~/Scripts/Controllers/orderController.js"></script>

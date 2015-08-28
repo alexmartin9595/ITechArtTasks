@@ -63,5 +63,3 @@ D:\Tasks\task8\PizzaService\PizzaService\bin\PizzaService.Entities.dll
 D:\Tasks\task8\PizzaService\PizzaService\bin\PizzaService.Entities.pdb
 D:\Tasks\task8\PizzaService\PizzaService\bin\PizzaService.Data.dll
 D:\Tasks\task8\PizzaService\PizzaService\bin\PizzaService.Data.pdb
-D:\Tasks\task8\PizzaService\PizzaService\obj\Debug\PizzaService.Migrations.Migrate.resources
-D:\Tasks\task8\PizzaService\PizzaService\obj\Debug\PizzaService.csproj.GenerateResource.Cache

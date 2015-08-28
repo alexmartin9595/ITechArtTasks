@@ -15,22 +15,24 @@
 
             getPizzaIngredients: function(pizzaId) {
                 return $http.get("/Home/GetPizzaIngredients/" + pizzaId);
+            },
+
+            addIngredient: function (data) {
+                return $http.post("/Home/AddIngredient", data);
+            },
+
+            deleteIngredient: function(data) {
+                return $http.post("/Home/DeleteIngredient", data);
+            },
+
+            incrementIngredient: function(data) {
+                return $http.post("/Home/IncrementIngredient", data);
+            },
+
+            decrementIngredient: function(data) {
+                return $http.post("/Home/DecrementIngredient", data);
             }
-            //getIngredientById: function(id) {
-            //    return $http.get("/Home/GetIngredientById" + id);
-            //}
 
-            //getPriceById: function (id) {
-            //    return getIngredientById(id).price;
-            //},
-
-            //getNameById: function (id) {
-            //    return getIngredientById(id).name;
-            //},
-
-            //getPhotoById: function (id) {
-            //    return getIngredientById(id).photo;
-            //}
         }
     }
 

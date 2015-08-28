@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PizzaService.Entities;
+using System.Data.Entity;
+using EntityState = System.Data.EntityState;
 
 namespace PizzaService.Data
 {
     public class PizzaRepository
     {
-        private PizzaSericeContext context;
         private static PizzaRepository instance;
 
-        private PizzaRepository()
-        {
-            context = new PizzaSericeContext();
-        }
+        private PizzaRepository() {}
 
         public static PizzaRepository Instance 
         {
@@ -29,24 +28,49 @@ namespace PizzaService.Data
 
         public IEnumerable<Pizza> GetAllPizza()
         {
-            return context.Pizzas.Include("PizzaIngredients");
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Pizzas.Include("PizzaIngredients").Where(p => p.IsCustom).ToList();
+            }
         }
 
         public Pizza GetPizzaById(int id)
         {
-            return context.Pizzas.FirstOrDefault(x => x.Id == id);
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Pizzas.Include("PizzaIngredients").FirstOrDefault(x => x.Id == id);
+            }
+        }
+
+        public void AddPrice(int pizzaId, int price)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Pizza currentPizza = GetPizzaById(pizzaId);
+                currentPizza.Price += price;
+                currentContext.Entry(currentPizza).State = System.Data.Entity.EntityState.Modified;
+                currentContext.SaveChanges();
+            }
+        }
+
+        public void DecrementPrice(int pizzaId, int price)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Pizza currentPizza = GetPizzaById(pizzaId);
+                currentPizza.Price -= price;
+                currentContext.Entry(currentPizza).State = System.Data.Entity.EntityState.Modified;
+                currentContext.SaveChanges();
+            }
         }
 
         public void AddPizza(Pizza pizza)
         {
-           context.Pizzas.Add(pizza);
-           context.SaveChanges();
-        }
-
-        public void DeletePizza(Pizza pizza)
-        {
-            context.Pizzas.Remove(pizza);
-            context.SaveChanges();
+            using (var currentContext = new PizzaSericeContext())
+            {
+                currentContext.Pizzas.Add(pizza);
+                currentContext.SaveChanges();
+            }
         }
     }
 }

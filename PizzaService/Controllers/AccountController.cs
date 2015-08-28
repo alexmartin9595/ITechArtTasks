@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using PizzaService.Data;
+using PizzaService.Entities;
 using PizzaService.Models;
 
 namespace PizzaService.Controllers
@@ -78,6 +80,12 @@ namespace PizzaService.Controllers
         {
             if (ModelState.IsValid)
             {
+                ServiceUser serviceUser = new ServiceUser
+                {
+                    Name = model.UserName,
+                    Role = "Client"
+                };
+                ServiceUserRepository.Instance.AddUser(serviceUser);
                 var user = new ApplicationUser() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PizzaService.Entities;
+using EntityState = System.Data.Entity.EntityState;
 
 namespace PizzaService.Data
 {
@@ -29,17 +32,43 @@ namespace PizzaService.Data
 
         public IEnumerable<Order> GetAllUserOrders(int userId)
         {
-            return context.Orders.Where(x => x.UserId == userId);
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Orders.Where(x => x.UserId == userId).ToList();    
+            }
+        }
+        
+        public Order GetOrderById(int orderId)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Orders.FirstOrDefault(x => x.Id == orderId);
+            }
         }
 
-        public Order GetUserOrderById(int userId, int orderId)
+        public IEnumerable<Pizza> GetAllPizzaFromOrder(int orderId)
         {
-            return context.Orders.Where(x => x.UserId == userId).FirstOrDefault(x => x.Id == orderId);
+            using (var currentcontext = new PizzaSericeContext())
+            {
+                IEnumerable<PizzaToOrder> pizzasToOrder =
+                    PizzaToOrderRepository.Instance.GetPizzaToOrderByOrderId(orderId);
+                List<Pizza> pizzas = new List<Pizza>();
+                foreach (var pizzaToOrder in pizzasToOrder)
+                {
+                    Pizza pizza =
+                        currentcontext.Pizzas.Include("PizzaToOrder").Include("PizzaIngredients").FirstOrDefault(p => p.Id == pizzaToOrder.PizzaId);
+                    pizzas.Add(pizza);
+                }
+                return pizzas;
+            }
         }
 
         public Order GetUnConfirmedOrder(int userId)
         {
-            return context.Orders.FirstOrDefault(o => o.IsConfirmed == false);
+            using (var currentContext = new PizzaSericeContext())
+            {
+                return currentContext.Orders.FirstOrDefault(o => o.IsConfirmed == false && o.UserId == userId);
+            }
         }
 
         public void AddOrder(Order order)
@@ -48,6 +77,28 @@ namespace PizzaService.Data
             {
                 currentContex.Orders.Add(order);
                 currentContex.SaveChanges();
+            }
+        }
+
+        public void AddPrice(int orderId, int price)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Order currentOrder = GetOrderById(orderId);
+                currentOrder.Price += price;
+                currentContext.Entry(currentOrder).State = EntityState.Modified;
+                currentContext.SaveChanges();
+            }
+        }
+
+        public void DecrementPrice(int orderId, int price)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Order currentOrder = GetOrderById(orderId);
+                currentOrder.Price -= price;
+                currentContext.Entry(currentOrder).State = EntityState.Modified;
+                currentContext.SaveChanges();
             }
         }
 
@@ -63,16 +114,31 @@ namespace PizzaService.Data
                 }
 
                 PizzaToOrderRepository.Instance.AddPizzaToOrder(currentOrder.Id, pizza);
-                currentOrder.Price += pizza.Price;
+                AddPrice(currentOrder.Id, pizza.Price);
                 currentContext.SaveChanges();
             }
             
         }
 
-        public void Delete(Order order)
+        public void ConfirmOrder(int userId)
         {
-            context.Orders.Remove(order);
-            context.SaveChanges();
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Order order = GetUnConfirmedOrder(userId);
+                order.IsConfirmed = true;
+                currentContext.Entry(order).State = EntityState.Modified;
+                currentContext.SaveChanges();
+            }
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                currentContext.Orders.Attach(order);
+                currentContext.Entry(order).State = EntityState.Deleted;
+                currentContext.SaveChanges();
+            }
         }
     }
 }

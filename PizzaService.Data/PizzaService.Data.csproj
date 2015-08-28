@@ -54,6 +54,7 @@
     <Compile Include="PizzaRepository.cs" />
     <Compile Include="PizzaToOrderRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceUserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

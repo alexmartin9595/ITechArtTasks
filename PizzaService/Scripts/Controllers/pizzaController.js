@@ -3,19 +3,16 @@
     
     var restaurantApp = angular.module('restaurantApp');
     
-    function callback($scope, pizzaService, ingredientService, orderService) {
-       
-        var promisePizza = pizzaService.getPizza();
+    function callback($scope, pizzaService, ingredientService, orderService, clientService) {
 
-        promisePizza.then(function(response) {
+        pizzaService.getPizza().then(function (response) {
             $scope.pizza = response.data;
-            console.log($scope.pizza);
         });
 
         $scope.getPizzaIngredients = function (pizzaId) {
-            var promiseIngredients = ingredientService.getPizzaIngredients(pizzaId);
-            promiseIngredients.then(function(response) {
-                $scope.pizzaIngredients = response.data;
+            ingredientService.getPizzaIngredients(pizzaId).then(function (response) {
+                clientService.setIngredients(response.data);
+                $scope.pizzaIngredients = clientService.getIngredients();
                 console.log($scope.pizzaIngredients);
             });
         }
@@ -23,13 +20,23 @@
         $scope.addPizza = function (pizza) {
             var promisedPizza = pizzaService.addPizza(pizza);
             promisedPizza.then(function () {
-                 alert("Pizza added successfully");
+                bootbox.alert("Pizza added successfully");
+                orderService.getCurrentOrderPizza().then(function (response) {
+                    $scope.orderPizza = response.data;
+                    console.log($scope.orderPizza);
+                    for (var i = 0; i < $scope.orderPizza.length; i++) {
+                        $scope.getPizzaCount(i);
+                    }
+                    clientService.setOrderPizza($scope.orderPizza);
+                });
              });
         }
-        $scope.getPriceById = ingredientService.getPriceById;
-        $scope.getNameById = ingredientService.getNameById;
-        $scope.getPhotoById = ingredientService.getPhotoById;
-        $scope.createCustomOrder = orderService.createCustomOrder;
+
+        $scope.getPizzaCount = function (pizzaIndex) {
+            orderService.getPizzaCount($scope.orderPizza[pizzaIndex].Id).then(function (response) {
+                $scope.orderPizza[pizzaIndex].Count = response.data;
+            });
+        }
     
         $scope.showPopup = function (id) {
             $scope.getPizzaIngredients(id);
@@ -40,5 +47,5 @@
         }
     }
     
-    restaurantApp.controller('PizzaController', ['$scope', 'pizzaService', 'ingredientService', 'orderService', callback]);    
+    restaurantApp.controller('PizzaController', ['$scope', 'pizzaService', 'ingredientService', 'orderService',  'clientService', callback]);    
 })();

@@ -13,5 +13,7 @@ namespace PizzaService.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public virtual ICollection<OrderToCook> OrdersToCook { get; set; }
     }
 }

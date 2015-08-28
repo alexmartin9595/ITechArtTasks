@@ -39,12 +39,16 @@ namespace PizzaService.Data
             }
         }
 
-        public IEnumerable<Ingredient> GetIngredientsByPizzaId(int pizzaId)
+        public IEnumerable<PizzaIngredient> GetIngredientsByPizzaId(int pizzaId)
         {
             using (var currentcontext = new PizzaSericeContext())
             {
-                IEnumerable<PizzaIngredient> pizzaIngredients =
-                    PizzaIngredientRepository.Instance.GetPizzaIngredients(pizzaId);
+                IEnumerable<PizzaIngredient> pizzaIngredients = PizzaIngredientRepository.Instance.GetPizzaIngredients(pizzaId)
+                    .Select(p => new
+                    {
+                        Ingredient = p.Ingredient,
+                        Count = p.Count
+                    });
                 List<Ingredient> ingredients = new List<Ingredient>();
                 foreach (var pizzaIngredient in pizzaIngredients)
                 {

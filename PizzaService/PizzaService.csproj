@@ -178,10 +178,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508260750538_Migrate.cs" />
-    <Compile Include="Migrations\201508260750538_Migrate.Designer.cs">
-      <DependentUpon>201508260750538_Migrate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -200,6 +196,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\PizzaModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -211,7 +208,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\font-awesome-4.4.0\css\font-awesome.css" />
+    <Content Include="fonts\font-awesome-4.4.0\css\font-awesome.min.css" />
+    <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\background.jpg" />
@@ -269,7 +268,14 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\font-awesome-4.4.0\fonts\FontAwesome.otf" />
+    <Content Include="fonts\Reklame.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Controllers\clientController.js" />
     <Content Include="Scripts\Controllers\ingredientsController.js" />
     <Content Include="Scripts\Controllers\orderController.js" />
     <Content Include="Scripts\Controllers\pizzaController.js" />
@@ -277,6 +283,7 @@
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.bpopup.min.js" />
     <Content Include="Scripts\pizzaModel.js" />
+    <Content Include="Scripts\Service\clientService.js" />
     <Content Include="Scripts\Service\ingredientService.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -322,9 +329,6 @@
     <Folder Include="Scripts\Model\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -340,11 +344,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508260750538_Migrate.resx">
-      <DependentUpon>201508260750538_Migrate.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

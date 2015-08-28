@@ -23,5 +23,9 @@ namespace PizzaService.Entities
         public string Family { get; set; }
 
         public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
+
+        public virtual ICollection<StockIngredient> StockIngredient { get; set; }
+
+        public virtual ICollection<VendorIngredientToOrder> VendorIngredientsToOrder { get; set; }
     }
 }
