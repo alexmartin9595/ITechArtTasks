@@ -35,7 +35,7 @@ namespace PizzaService.Data
         {
             using (var currentcontext = new PizzaSericeContext())
             {
-                return currentcontext.Ingredients.FirstOrDefault(x => x.Id == id);    
+                return currentcontext.Ingredients.Include("StockIngredient").FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -65,6 +65,16 @@ namespace PizzaService.Data
                 return ingredients;
             }
 
+        }
+
+        public void DeleteIngredient(int id)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                Ingredient ingredient = currentContext.Ingredients.Find(id);
+                currentContext.Ingredients.Remove(ingredient);
+                currentContext.SaveChanges();
+            }
         }
     }
 }

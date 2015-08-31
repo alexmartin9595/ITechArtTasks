@@ -10,6 +10,10 @@ else if (Roles.IsUserInRole("Cooker"))
 {
     @Html.Partial("Cook");
 }
+else if (Roles.IsUserInRole("Director"))
+{
+    @Html.Partial("Stock");
+}
 else
 {
     @Html.Partial("User");

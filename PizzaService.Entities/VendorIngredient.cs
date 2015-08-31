@@ -11,13 +11,16 @@ namespace PizzaService.Entities
 {
     public class VendorIngredient
     {
-        [Key, Column(Order = 0)]
+        [Key]
+        public int Id { get; set; }
+        
         [ForeignKey("Ingredient")]
         public int IngredientId { get; set; }
-
-        [Key, Column(Order = 1)]
+        
         [ForeignKey("Vendor")]
         public int VendorId { get; set; }
+
+        public int Price { get; set; }
 
         [ScriptIgnore]
         public virtual Vendor Vendor { get; set; }
@@ -25,6 +28,7 @@ namespace PizzaService.Entities
         [ScriptIgnore]
         public virtual Ingredient Ingredient { get; set; }
 
-        public virtual ICollection<VendorIngredientToOrder> VendorIngredientsToOrder { get; set; }
+        public virtual ICollection<CartIngredient> CartIngredient { get; set; }
+
     }
 }

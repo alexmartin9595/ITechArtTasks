@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PizzaService.Entities
 {
@@ -16,8 +12,6 @@ namespace PizzaService.Entities
 
         public string Name { get; set; }
 
-        public virtual ICollection<VendorIngredient> VendorIngredients  { get; set; }
-
-        public virtual ICollection<VendorIngredientToOrder> VendorIngredientsToOrder { get; set; }
+        public virtual ICollection<VendorIngredient> VendorIngredients { get; set; }
     }
 }

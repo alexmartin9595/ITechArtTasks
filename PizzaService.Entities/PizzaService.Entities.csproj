@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartIngredient.cs" />
+    <Compile Include="CartViewItem.cs" />
     <Compile Include="History.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Order.cs" />
@@ -57,8 +59,6 @@
     <Compile Include="StockIngredient.cs" />
     <Compile Include="Vendor.cs" />
     <Compile Include="VendorIngredient.cs" />
-    <Compile Include="VendorIngredientToOrder.cs" />
-    <Compile Include="VendorOrder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

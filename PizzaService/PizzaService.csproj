@@ -181,9 +181,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201508311338408_MigrateDb.cs" />
-    <Compile Include="Migrations\201508311338408_MigrateDb.Designer.cs">
-      <DependentUpon>201508311338408_MigrateDb.cs</DependentUpon>
+    <Compile Include="Migrations\201508311920000_MigrateDb.cs" />
+    <Compile Include="Migrations\201508311920000_MigrateDb.Designer.cs">
+      <DependentUpon>201508311920000_MigrateDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.Context.cs">
@@ -291,11 +291,13 @@
     <Content Include="fonts\Reklame.otf" />
     <Content Include="fonts\Royalacid.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Controllers\clientController.js" />
     <Content Include="Scripts\Controllers\ingredientsController.js" />
     <Content Include="Scripts\Controllers\orderController.js" />
     <Content Include="Scripts\Controllers\pizzaController.js" />
+    <Content Include="Scripts\Controllers\stockController.js" />
+    <Content Include="Scripts\Controllers\stockOrderController.js" />
     <Content Include="Scripts\Controllers\userController.js" />
+    <Content Include="Scripts\Controllers\vendorsController.js" />
     <Content Include="Scripts\CookControllers\historyController.js" />
     <Content Include="Scripts\CookControllers\mainController.js" />
     <Content Include="Scripts\CookControllers\pageController.js" />
@@ -308,7 +310,6 @@
     <Content Include="Scripts\CookServices\shiftService.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.bpopup.min.js" />
-    <Content Include="Scripts\Service\clientService.js" />
     <Content Include="Scripts\Service\ingredientService.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -322,7 +323,10 @@
     <Content Include="Scripts\Service\pizzaService.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Service\stockOrderService.js" />
+    <Content Include="Scripts\Service\stockService.js" />
     <Content Include="Scripts\Service\userService.js" />
+    <Content Include="Scripts\Service\vendorsService.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -357,11 +361,6 @@
     <Content Include="Views\Shared\Stock.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201508311338408_MigrateDb.resx">
-      <DependentUpon>201508311338408_MigrateDb.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
@@ -377,6 +376,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508311920000_MigrateDb.resx">
+      <DependentUpon>201508311920000_MigrateDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

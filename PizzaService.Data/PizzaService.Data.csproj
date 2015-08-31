@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CartIngredientsRepository.cs" />
     <Compile Include="CustomRoleProvider.cs" />
     <Compile Include="OrderRepository.cs" />
     <Compile Include="PizzaIngredientRepository.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="ServiceUserRepository.cs" />
     <Compile Include="ShiftRepository.cs" />
     <Compile Include="StockRepository.cs" />
+    <Compile Include="VendorIngredientRepository.cs" />
+    <Compile Include="VendorRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

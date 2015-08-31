@@ -57,8 +57,6 @@ namespace PizzaService.Data
 
         public DbSet<VendorIngredient> VendorIngredients { get; set; }
 
-        public DbSet<VendorIngredientToOrder> VendorIngredientToOrders { get; set; }
-
-        public DbSet<VendorOrder> VendorOrders { get; set; }
+        public DbSet<CartIngredient> CartIngredients { get; set; }
     }
 }

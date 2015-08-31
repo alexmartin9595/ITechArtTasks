@@ -1,1 +1,149 @@
-﻿
+﻿<div class="wrapper">
+    <section ng-controller="StockController">
+        @*<form ng-submit="addProduct()">
+                <input ng-model="newProductFamily" placeholder="family" type="text">
+                <input ng-model="newProductKind" placeholder="kind" type="text">
+                <input ng-model="newProductMinAmount" placeholder="minimal amount" type="number" min="0">
+                <span class="button add" ng-click="addProduct()">&#xf067;</span>
+            </form>*@
+        <table>
+            <caption>
+                <h2>Products</h2>
+            </caption>
+            <tr ng-repeat="ingredient in ingredients">
+                <td>
+                    <table>
+                        <caption ng-bind="ingredient.Family"></caption>
+                        <tr>
+                            <th>name</th>
+                            <th>amount</th>
+                            <th>refill</th>
+                            <th>remove</th>
+                        </tr>
+                        <tr>
+                            <td ng-bind="ingredient.Name"></td>
+                            <td ng-bind="ingredient.StockIngredient[0].Count"></td>
+                            <td>
+                                <span class="button dollar" ng-click="refill(ingredient.Id)">&#xf155;</span>
+                            </td>
+                            <td>
+                                <span class="button remove" ng-click="removeProduct(ingredient.Id)">&#xf00d;</span>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section ng-controller="vendorsController">
+        @*<form>
+                <input ng-model="newVendorName" placeholder="Name" type="text">
+                <input ng-model="newVendorQuickness" placeholder="Quickness" type="number" min="1">
+                <input ng-model="newVendorProduct" placeholder="Product" type="text">
+                <input ng-model="newVendorProductPrice" placeholder="Product price" type="number" min="0">
+                <span class="button add" ng-click="addVendor()">&#xf067;</span>
+            </form>*@
+        <table>
+            <caption>
+                <h2>Vendors</h2>
+            </caption>
+            <tr>
+                <th>Name</th>
+                <th>Quickness</th>
+            </tr>
+            <tr ng-repeat="vendor in vendors">
+                <td ng-bind="vendor.Name"></td>
+                <td ng-bind="vendor.Quickness"></td>
+                <td>
+                    <span class="button remove" ng-click="removeVendor(vendor.Id)">&#xf00d;</span>
+                </td>
+            </tr>
+        </table>
+    </section>
+    <section ng-controller="stockOrderController">
+        <div>
+            <div class="story-popup">
+                <table>
+                    <tr>
+                        <th>Product</th>
+                        <th>Vendor</th>
+                        <th>Amount</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                    <tr ng-repeat="orderItem in ordersStory">
+                        <td ng-bind="orderItem.name"></td>
+                        <td ng-bind="orderItem.vendor"></td>
+                        <td ng-bind="orderItem.amount"></td>
+                        <td ng-bind="orderItem.price"></td>
+                        <td ng-bind="orderItem.date | date: 'yyyy-MM-dd H:m:s' "></td>
+                    </tr>
+                </table>
+            </div>
+            <span class="button story" ng-click="showStory()">&#xf1da; story</span>
+        </div>
+        <div class="available-vendors">
+            <table>
+                <caption ng-bind="order.product"></caption>
+                <thead>
+                <tr>
+                    <th>Vendor</th>
+                    <th>Price</th>
+                    <th>quickness</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="vendor in availableVendors">
+                    <td ng-bind="vendor.Vendor.Name"></td>
+                    <td ng-bind="vendor.Vendor.VendorIngredients[0].Price"></td>
+                    <td ng-bind="vendor.Vendor.Quickness"></td>
+                    <td>
+                        <span class="button add" ng-click="pickProduct(vendor.Vendor.VendorIngredients[0].Id)">&#xf055;</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="checkout">
+                <h2>Total:</h2>
+                <span ng-bind="sum"></span>
+            </div>
+        </div>
+        <div class="checkout">
+            <div class="success-popup">
+                <h1>Success!</h1>
+            </div>
+            <div class="error-popup">
+                <h1>Error!</h1>
+            </div>
+            <h2>Total:</h2>
+            <span ng-bind="sum"></span>
+            <span class="button add" ng-show="sum" ng-click="confirmOrder(confirmSuccess, confirmError)">&#xf218;</span>
+        </div>
+        <table>
+            <tr>
+                <th>Product</th>
+                <th>Vendor</th>
+                <th>Amount</th>
+                <th>Price</th>
+            </tr>
+            <tr ng-repeat="orderItem in orderList">
+                <td ng-bind="orderItem.IngredientName"></td>
+                <td ng-bind="orderItem.VendorName"></td>
+                <td ng-bind="orderItem.Count"></td>
+                <td ng-bind="orderItem.Price"></td>
+                <td>
+                    <span class="button remove" ng-click="removeProduct(orderItem.name, orderItem.vendor)">&#xf00d;</span>
+                </td>
+            </tr>
+        </table>
+    </section>
+</div>
+
+<script src="~/Scripts/Service/vendorsService.js"></script>
+<script src="~/Scripts/Service/stockService.js"></script>
+<script src="~/Scripts/Service/stockOrderService.js"></script>
+
+<script src="~/Scripts/Controllers/stockController.js"></script>
+<script src="~/Scripts/Controllers/vendorsController.js"></script>
+<script src="~/Scripts/Controllers/stockOrderController.js"></script>
+

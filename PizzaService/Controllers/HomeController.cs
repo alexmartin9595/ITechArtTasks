@@ -258,5 +258,88 @@ namespace PizzaService.Controllers
             IEnumerable<Ingredient> ingredients = IngredientRepository.Instance.GetIngredientsNameByIds(ids);
             return Json(ingredients, JsonRequestBehavior.AllowGet);
         }
+
+        [Authorize(Roles = "Director")]
+        [HttpGet]
+        public ActionResult GetVendors()
+        {
+            IEnumerable<Vendor> vendors = VendorRepository.Instance.GetAllVendors();
+            return Json(vendors, JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Stock/GetVendorIngredientsByProductId/4
+        [Authorize(Roles = "Director")]
+        [HttpGet]
+        public ActionResult GetVendorIngredientsByProductId(int id)
+        {
+            IEnumerable<VendorIngredient> vendors = VendorRepository.Instance.GetVendorByProductId(id);
+
+            return Json(vendors.Select(v => new { Vendor = v.Vendor }), JsonRequestBehavior.AllowGet);
+        }
+
+        // POST: Stock/DeleteVendor
+        [Authorize(Roles = "Director")]
+        [HttpPost]
+        public void DeleteVendor(int id)
+        {
+            VendorRepository.Instance.DeleteVendor(id);
+        }
+
+        // POST: Stock/CreateVendor        
+        [Authorize(Roles = "Director")]
+        [HttpPost]
+        public void CreateVendor(Vendor vendor)
+        {
+            VendorRepository.Instance.AddVendor(vendor);
+        }
+
+        // GET: Stock/GetIngredients
+        [Authorize(Roles = "Director")]
+        [HttpGet]
+        public ActionResult GetIngredients()
+        {
+            IEnumerable<Ingredient> ingredients = IngredientRepository.Instance.GetAllIngredients();
+            return Json(ingredients, JsonRequestBehavior.AllowGet);
+        }
+
+        // POST: Stock/CreateIngredient  
+        [Authorize(Roles = "Director")]
+        [HttpPost]
+        public void CreateIngredient(Ingredient ingredient)
+        {
+            IngredientRepository.Instance.AddIngredient(ingredient);
+        }
+
+        // POST: Stock/DeleteIngredient
+        [Authorize(Roles = "Director")]
+        [HttpPost]
+        public void DeleteIngredient(int id)
+        {
+            IngredientRepository.Instance.DeleteIngredient(id);
+        }
+
+        // POST: Stock/AddToCart/3
+        [Authorize(Roles = "Director")]
+        [HttpPost]
+        public void AddToCart(int id)
+        {
+            CartIngredientsRepository.Instance.AddCartIngredient(id);
+        }
+
+        [Authorize(Roles = "Director")]
+        [HttpGet]
+        // GET: Stock/GetCartIngredients
+        public ActionResult GetCartIngredients()
+        {
+            return Json(CartIngredientsRepository.Instance.GetAll(), JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Director")]
+        [HttpGet]
+        // GET: Stock/GetCartIngredients
+        public ActionResult GetCartIngredientsSum()
+        {
+            return Json(CartIngredientsRepository.Instance.GetSum(), JsonRequestBehavior.AllowGet);
+        }        
     }
 }
