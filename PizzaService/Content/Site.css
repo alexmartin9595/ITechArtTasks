@@ -1,6 +1,6 @@
 ﻿@font-face {
-    font-family: "Reklame";     
-    src: url("../fonts/Reklame.otf");
+    font-family: "Royalacid";     
+    src: url("../fonts/Royalacid.TTF");
 }
 
 body {
@@ -8,8 +8,8 @@ body {
     background-size:100%;
     color:#ffffff;
 
-    font-family:Reklame;
-    font-size:18px;
+    font-family:Royalacid;
+    font-size:20px;
     font-weight: 700;
 
     padding-top: 50px;
@@ -21,7 +21,7 @@ body {
     background: url("../Images/wrapper-background.gif") repeat-y;
     background-size:100%;
 
-    min-width: 1350px;
+    min-width: 1650px;
     padding-left: 15px;
     padding-right: 15px;
 }
@@ -73,6 +73,10 @@ input[type="checkbox"].input-validation-error {
     float: left;
 }
 
+.ingredientlist {
+    float: left;
+}
+
 .ingredients {   
     background-color: #252525;
     color:#252525;
@@ -114,6 +118,7 @@ h3 {
 
 th {
     background-color:#FFDA95;   
+    color: #252525;
 
     padding:10px;
 }
@@ -153,6 +158,7 @@ button {
     cursor:pointer;
 
     padding:10px 15px;
+    margin: 5px 15px;
 
     font-family:Reklame;
     font-weight: 700;
@@ -199,6 +205,10 @@ button:hover {
 
 .ingredients-viewer:hover {
 	text-decoration:underline;
+}
+
+.customingredients {
+	color: #A43036;
 }
 
 .ingredients-popup {
@@ -253,6 +263,22 @@ button:hover {
 
 .edit:hover {
     color: #AFE3DF;
+}
+
+.create-role-popup {
+    display:none;
+}
+
+.edit-role-popup {
+    display: none;
+}
+
+.users {
+    float: left;
+}
+
+.roles {
+    float: left;
 }
 
 footer {

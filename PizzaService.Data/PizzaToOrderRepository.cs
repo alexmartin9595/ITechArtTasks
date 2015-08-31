@@ -29,7 +29,7 @@ namespace PizzaService.Data
         {
             using (var currentContext = new PizzaSericeContext())
             {
-                return currentContext.PizzaToOrders.Where(p => p.OrderId == orderId).ToList();
+                return currentContext.PizzaToOrders.Include("Pizza").Where(p => p.OrderId == orderId).ToList();
             }
         }
 
@@ -39,28 +39,7 @@ namespace PizzaService.Data
             {
                 return currentContext.PizzaToOrders.FirstOrDefault(p => p.OrderId == orderId && p.PizzaId == pizzaId);
             }
-        }
-
-        public PizzaToOrder GetCurrentUserPizza(int orderId)
-        {
-            using (var currentContext = new PizzaSericeContext())
-            {
-                IEnumerable<PizzaToOrder> pizzaToOrders =
-                    currentContext.PizzaToOrders.ToList();
-                return pizzaToOrders.Last();
-            }
-        }
-
-        public int GetPizzaCountByOrderId(int orderId, int pizzaId)
-        {
-            using (var currentContext = new PizzaSericeContext())
-            {
-                var firstOrDefault = currentContext.PizzaToOrders.FirstOrDefault(p => p.PizzaId == pizzaId && p.OrderId == orderId);
-                if (firstOrDefault != null)
-                    return firstOrDefault.Count;
-                else return -1;
-            }
-        }
+        }        
 
         public void IncrementCount(int orderId, int pizzaId)
         {
@@ -133,6 +112,39 @@ namespace PizzaService.Data
                     DecrementCount(orderId, pizza.Id);
                 OrderRepository.Instance.DecrementPrice(orderId, pizza.Price);
                 currentContext.SaveChanges();
+            }
+        }
+
+        public IEnumerable<Pizza> GetPizzasToCook()
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                var orders = currentContext.Orders.Include(i => i.PizzaToOrder).Where(p => p.IsComplited == false).Select(
+                    p => new
+                    {
+                        OrderId = p.Id,
+                        PizzaToOrder = p.PizzaToOrder,
+                        IsCompleted = p.IsComplited
+                    });
+                List<Pizza> pizza = new List<Pizza>();
+                foreach (var order in orders)
+                {
+                    var pizzaToOrder =
+                        currentContext.PizzaToOrders.Where(i => i.OrderId == order.OrderId).Select(p => new
+                        {
+                            PizzaId = p.PizzaId,
+                            Count = p.Count
+                        });
+                    foreach (var pizzaInOrder in pizzaToOrder)
+                    {
+                        Pizza currentPizza = currentContext.Pizzas.Include(p => p.PizzaIngredients).FirstOrDefault(p => p.Id == pizzaInOrder.PizzaId);
+                        for (var i = 0; i < pizzaInOrder.Count; i++)
+                        {
+                            pizza.Add(currentPizza);
+                        }
+                    }
+                }
+                return pizza;
             }
         }
     }

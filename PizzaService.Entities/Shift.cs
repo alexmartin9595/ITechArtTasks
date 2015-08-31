@@ -14,6 +14,6 @@ namespace PizzaService.Entities
 
         public string Name { get; set; }
 
-        public virtual ICollection<OrderToCook> OrdersToCook { get; set; }
+        public virtual ICollection<History> Histories { get; set; } 
     }
 }

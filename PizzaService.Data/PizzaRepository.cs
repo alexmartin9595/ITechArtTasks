@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using PizzaService.Entities;
 using System.Data.Entity;
-using EntityState = System.Data.EntityState;
 
 namespace PizzaService.Data
 {

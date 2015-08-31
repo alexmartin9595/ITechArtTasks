@@ -21,11 +21,12 @@ namespace PizzaService.Entities
 
         public bool IsConfirmed { get; set; }
 
+        public bool IsComplited { get; set; }
+
         [ForeignKey("UserId")]
         public virtual ServiceUser ServiceUser { get; set; }
         
         public virtual ICollection<PizzaToOrder> PizzaToOrder { get; set; }
-
-        public virtual ICollection<OrderToCook> OrdersToCook { get; set; }
+        
     }
 }

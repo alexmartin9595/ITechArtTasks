@@ -1,0 +1,63 @@
+﻿<div class="content" ng-controller="UserController">
+    <div class="users">
+        <h3>Users</h3>
+        <table>
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+                <th>Role</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>{{$index + 1}}</td>
+                <td>{{user.Name}}</td>
+                <td>{{user.Role.Name}}</td>
+                <td class="delete"><span class="button edit" ng-hide="user.Role.Name == 'Admin'" title="edit role" ng-click="showRoleEditor(user)">&#xf044;</span></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="roles">
+        <h3>Roles</h3>
+        <table>
+            <tr>
+                <th>№</th>
+                <th>Name</th>
+            </tr>
+            <tr ng-repeat="role in roles">
+                <td>{{$index + 1}}</td>
+                <td>{{role.Name}}</td>
+                <td class="delete"><span class="button remove" ng-show="role.ServiceUsers.length < 1" ng-click="deleteRole(role)">&#xf00d;</span></td>
+            </tr>
+        </table>
+        <button class="role" ng-click="showRoleCreator()">Create Role</button>
+    </div>
+
+
+    <div class="create-role-popup">
+        <label for="role">Role</label><br />
+        <input name="role" id="role" />
+        <button ng-click="addRole()">Add</button>
+    </div>
+
+    <div class="edit-role-popup">
+        <label for="role">Role</label><br />
+        <select id="selector">
+            <option ng-repeat="role in roles" value="{{role.Id}}">{{role.Name}}</option>
+        </select>
+        <button ng-click="editUserRole()">Add</button>
+    </div>
+</div>
+
+<script src="~/Scripts/Service/orderService.js"></script>
+<script src="~/Scripts/Service/ingredientService.js"></script>
+<script src="~/Scripts/Service/pizzaService.js"></script>
+<script src="~/Scripts/Service/clientService.js"></script>
+<script src="~/Scripts/Service/userService.js"></script>
+
+<script src="~/Scripts/Controllers/ingredientsController.js"></script>
+<script src="~/Scripts/Controllers/orderController.js"></script>
+<script src="~/Scripts/Controllers/pizzaController.js"></script>
+<script src="~/Scripts/Controllers/userController.js"></script>
+
+

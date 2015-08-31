@@ -5,3 +5,17 @@ D:\Tasks\task8\PizzaService\PizzaService.Entities\bin\Debug\Newtonsoft.Json.xml
 D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.csprojResolveAssemblyReference.cache
 D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.dll
 D:\Tasks\task8\PizzaService\PizzaService.Entities\obj\Debug\PizzaService.Entities.pdb
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\bin\Debug\PizzaService.Entities.dll
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\bin\Debug\PizzaService.Entities.pdb
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\bin\Debug\Newtonsoft.Json.dll
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\bin\Debug\Newtonsoft.Json.xml
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\obj\Debug\PizzaService.Entities.csprojResolveAssemblyReference.cache
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\obj\Debug\PizzaService.Entities.dll
+E:\ITechArt\iTechArtTasks-practice_ASP.NET\PizzaService.Entities\obj\Debug\PizzaService.Entities.pdb
+D:\Tasks\task8\PizzaService.Entities\bin\Debug\PizzaService.Entities.dll
+D:\Tasks\task8\PizzaService.Entities\bin\Debug\PizzaService.Entities.pdb
+D:\Tasks\task8\PizzaService.Entities\bin\Debug\Newtonsoft.Json.dll
+D:\Tasks\task8\PizzaService.Entities\bin\Debug\Newtonsoft.Json.xml
+D:\Tasks\task8\PizzaService.Entities\obj\Debug\PizzaService.Entities.csprojResolveAssemblyReference.cache
+D:\Tasks\task8\PizzaService.Entities\obj\Debug\PizzaService.Entities.dll
+D:\Tasks\task8\PizzaService.Entities\obj\Debug\PizzaService.Entities.pdb

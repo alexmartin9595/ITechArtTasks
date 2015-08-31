@@ -45,7 +45,9 @@ namespace PizzaService.Data
 
         public DbSet<ServiceUser> ServiceUsers { get; set; }
 
-        public DbSet<OrderToCook> OrdersToCook { get; set; }
+        public DbSet<Role> Roles { get; set; }
+
+        public DbSet<History> Histories { get; set; }
 
         public DbSet<Shift> Shifts { get; set; }
 

@@ -4,10 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link type="text/css" rel="stylesheet" href="~/fonts/font-awesome-4.4.0/css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="~/fonts/font-awesome-4.4.0/css/font-awesome.min.css"/>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/angular.min.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
+    <link href="~/Content/blocker-styles.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.bpopup.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/blocker.js"></script>
+
+    <script src="~/Scripts/Module/module.js"></script>
 </head>
 <body ng-app="restaurantApp">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,41 +37,17 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                 </ul>
+                
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-<div class="container body-content">
-    @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-</div>
-
-    <script src="~/Scripts/angular.js"></script>
-
-@Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)   
-
-    <script src="~/Scripts/jquery.bpopup.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-
-    <script src="~/Scripts/bootbox.min.js"></script>
-
-    <script src="~/Scripts/blocker.js"></script>
-
-    <script src="~/Scripts/ingredientModel.js"></script>
-    <script src="~/Scripts/pizzaModel.js"></script>
-
-    <script src="~/Scripts/Service/orderService.js"></script>
-    <script src="~/Scripts/Service/ingredientService.js"></script>
-    <script src="~/Scripts/Service/pizzaService.js"></script>
-    <script src="~/Scripts/Service/clientService.js"></script>
-
-    <script src="~/Scripts/Controllers/ingredientsController.js"></script>
-    <script src="~/Scripts/Controllers/orderController.js"></script>
-    <script src="~/Scripts/Controllers/pizzaController.js"></script>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
 </body>
 </html>

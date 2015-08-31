@@ -1,0 +1,188 @@
+﻿body {
+    background: url("../../images/background.jpg");
+    background-size: 100%;
+    color: #ffffff;
+}
+
+.main {
+    margin: 100px auto;
+
+    width: 1200px;
+ 
+    background: url("../../images/wrapper-background.gif") repeat-y;
+    background-size: 100%;
+}
+
+.queue {
+    display: block;
+    overflow: hidden;
+
+    margin: 20px 10px;
+
+    width: 98%;
+}
+
+.ingredients-show {
+    display: none;
+
+    position: fixed;
+
+    font-family: Arial;
+}
+
+.ingredients-show ul li {
+    margin: 20px;
+
+    list-style: none;
+
+    float: left;
+}
+
+.pizza {
+    margin: 10px 20px;
+
+    float: left;
+}
+
+.pizza p {
+    display: block;
+    text-align: center;
+}
+
+.pizza-ingredients {
+    display: block;
+    overflow: hidden;
+
+    margin: 10px auto;
+}
+
+.pizza-ingredients img {
+    float: left;
+}
+
+.pizza-ingredients p {
+    display: block;
+
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.pizza-ingredients .blue-text {
+    color: #174be5;
+}
+
+.pizza-ingredients ul {
+    display: block;
+    overflow: hidden;
+}
+
+.pizza-ingredients ul li {
+    margin: 20px 20px;
+
+    font-size: 20px;
+
+    float: left;
+}
+
+.queue-block {
+    display: inline-block;
+
+    width: 90%;
+}
+
+.queue-block img{
+    margin: 0;
+    height: 250px;
+    width: 250px;
+}
+
+.queue-block .ingredient-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.pizza-ingredients_buttons{
+    float: right;
+}
+
+.pizza-ingredients_buttons input {
+    margin: 20px 5px;
+
+    height: 30px;
+
+    font-size: 20px;
+
+    background-color: #1573c2;
+    border: none;
+    border-radius: 5px;
+}
+
+.not-enough-products {
+    display: none;
+
+    background-color: #353843;
+}
+
+.not-enough-products_buttons {
+    margin: 30px;
+
+    border-radius: 7px;
+}
+
+.not-enough-products p {
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.pizza-done {
+    display: none;
+
+    background-color: #353843;
+}
+
+.pizza-done_buttons {
+    width: 100%;
+
+    border-radius: 7px;
+}
+
+.pizza-done_buttons input {
+    display: block;
+
+    margin: 20px auto;
+
+    height: 30px;
+    width: 50px;
+
+    font-size: 20px;
+
+    background-color: #1573c2;
+    border: none;
+    border-radius: 5px;
+}
+
+.not-enough-products span {
+    color: #174be5;
+}
+
+.not-enough-products input {
+    margin: 20px 5px;
+
+    height: 30px;
+
+    font-size: 20px;
+
+    background-color: #1573c2;
+    border: none;
+    border-radius: 5px;
+}
+
+.hide-main {
+    display: none;
+}
+
+.modal-body {
+    color: #000000;
+}

@@ -1,0 +1,38 @@
+﻿.history {
+    display: block;
+    overflow: hidden;
+
+    width: 100%;
+}
+
+.history-block {
+    display: inline-block;
+
+    padding: 5px;
+
+    width: 49.0%;
+
+    border: solid 1px white;
+
+    float: left;
+}
+
+.history-block p {
+    margin: 10px auto;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    font-size: 20px;
+}
+
+.history-block img {
+    margin: 0 0 30px 0;
+
+    height: 250px;
+    width: 250px;
+}
+
+.hide-history {
+    display: none;
+}

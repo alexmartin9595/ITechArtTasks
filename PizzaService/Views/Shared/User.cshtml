@@ -1,0 +1,74 @@
+﻿<div class="content" ng-controller="IngredientsController">
+    <div ng-controller="PizzaController">
+        <div class="pizza">
+            <h2>Pizza</h2>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Diameter</th>
+                    <th>Photo</th>
+                    <th><span>Composition</span></th>
+                </tr>
+                <tr ng-repeat="pizza in pizza">
+                    <td>{{$index + 1}}</td>
+                    <td>{{pizza.Name}}</td>
+                    <td>{{pizza.Price}}</td>
+                    <td>{{pizza.Diameter}}</td>
+                    <td class="pizza-image"><img src="{{pizza.Photo}}" /></td>
+                    <td>
+                        <span class="ingredients-viewer" ng-click="showPopup(pizza.Id)">Show Ingredients</span>
+                        <div class="ingredients-popup">
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Photo</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
+                                </tr>
+                                <tr ng-repeat="ingredient in pizzaIngredients">
+                                    <td>{{ingredient.Ingredient.Name}}</td>
+                                    <td class="pizza-image"><img src="{{ingredient.Ingredient.Photo}}" /></td>
+                                    <td>{{ingredient.Ingredient.Price}}</td>
+                                    <td>{{ingredient.Count}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="ingredientlist">
+            <h2>Ingredients</h2>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Photo</th>
+                    <th>Family</th>
+                </tr>
+                <tr ng-repeat="ingredient in model">
+                    <td>{{$index + 1}}</td>
+                    <td>{{ingredient.Name}}</td>
+                    <td>{{ingredient.Price}}</td>
+                    <td class="pizza-image"><img src="{{ingredient.Photo}}" /></td>
+                    <td>>{{ingredient.Family}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Service/orderService.js"></script>
+<script src="~/Scripts/Service/ingredientService.js"></script>
+<script src="~/Scripts/Service/pizzaService.js"></script>
+<script src="~/Scripts/Service/clientService.js"></script>
+<script src="~/Scripts/Service/userService.js"></script>
+
+<script src="~/Scripts/Controllers/ingredientsController.js"></script>
+<script src="~/Scripts/Controllers/orderController.js"></script>
+<script src="~/Scripts/Controllers/pizzaController.js"></script>
+<script src="~/Scripts/Controllers/userController.js"></script>

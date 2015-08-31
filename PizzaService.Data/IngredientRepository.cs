@@ -27,7 +27,7 @@ namespace PizzaService.Data
         {
             using (var currentContext = new PizzaSericeContext())
             {
-                return currentContext.Ingredients.ToList();    
+                return currentContext.Ingredients.Include("StockIngredient").ToList();    
             }            
         }
 
@@ -39,25 +39,7 @@ namespace PizzaService.Data
             }
         }
 
-        public IEnumerable<PizzaIngredient> GetIngredientsByPizzaId(int pizzaId)
-        {
-            using (var currentcontext = new PizzaSericeContext())
-            {
-                IEnumerable<PizzaIngredient> pizzaIngredients = PizzaIngredientRepository.Instance.GetPizzaIngredients(pizzaId)
-                    .Select(p => new
-                    {
-                        Ingredient = p.Ingredient,
-                        Count = p.Count
-                    });
-                List<Ingredient> ingredients = new List<Ingredient>();
-                foreach (var pizzaIngredient in pizzaIngredients)
-                {
-                    Ingredient ingredient = currentcontext.Ingredients.FirstOrDefault(i => i.Id == pizzaIngredient.IngredientId);
-                    ingredients.Add(ingredient);
-                }
-                return ingredients;
-            }
-        }
+        
 
         public void AddIngredient(Ingredient ingredient)
         {
@@ -65,6 +47,22 @@ namespace PizzaService.Data
             {
                 currentContext.Ingredients.Add(ingredient);
                 currentContext.SaveChanges();
+            }
+
+        }
+
+        public IEnumerable<Ingredient> GetIngredientsNameByIds(int[] ids)
+        {
+            using (var currentContext = new PizzaSericeContext())
+            {
+                List<Ingredient> ingredients = new List<Ingredient>();
+
+                for (var i = 0; i < ids.Length; i++)
+                {
+                    var id = ids[i];
+                    ingredients.Add(currentContext.Ingredients.FirstOrDefault(p => p.Id == id));
+                }
+                return ingredients;
             }
 
         }

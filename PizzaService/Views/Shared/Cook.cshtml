@@ -1,0 +1,145 @@
+﻿
+<link href="~/Content/blocker-styles.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/history.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/shift.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/cook.css" rel="stylesheet" type="text/css" />
+
+
+<div class="main">
+    <div ng-controller="shiftController">
+        <div class="shift" ng-controller="pageController">
+            <a href="#" ng-click="changePage()"> <span ng-bind="page"></span></a>
+            <input class="shiftBtn" ng-disabled="!shiftEndBtnDisable" type="button" value="start shift" ng-click="startShift()" />
+            <input class="shiftBtn" ng-disabled="shiftEndBtnDisable" type="button" value="end shift" ng-click="changeShift()" />
+            <p ng-show="isShiftOn">
+                on shift cooker: <span ng-bind="shift.Name"></span>
+            </p>
+            <p ng-show="!isShiftOn">
+                cooker <span ng-bind="shift.Name"></span> is ready to shift
+            </p>
+        </div>
+
+        <div class="end-shift">
+            <div>
+                <p>
+                    for the shift of <span class="shift-name" ng-bind="currentShift.Name"></span> <br />
+                    done pizzas
+                </p>
+                <ul>
+                    <li ng-repeat="pizza in doneOnShift track by $index">
+                        <p class="no-margin">
+                            <span ng-bind="pizza.Name"></span>
+                        </p>
+                    </li>
+                </ul>
+                <p>
+                    and used ingredients
+                </p>
+                <ul>
+                    <li ng-repeat="ingredient in usedIngredients">
+                        <p class="no-margin">
+                            <span ng-bind="ingredient.name"></span>
+                            x<span ng-bind="ingredient.count"></span>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div ng-controller="mainController" ng-if="isShiftOn">
+            <div ng-class="{'hide-main': isHideMain()}">
+                <div class="queue">
+                    <div class="pizza-ingredients" ng-repeat="pizza in pizzasQueue">
+                        <div class="queue-block">
+                            <img src="{{pizza.pizza.Photo}}" />
+                            <p>
+                                <span class="blue-text" ng-bind="pizza.pizza.Name"></span> Pizza
+                            </p>
+                        </div>
+
+                        <div class="pizza-ingredients_buttons">
+                            <input ng-disabled="setCookBtn(pizza.queue)" type="button" value="start cook" ng-click="startCook(pizza)" /> <br />
+                            <input type="button" value="ingredients" ng-click="getIngredientsForPizza(pizza)" /> <br />
+                            <input ng-disabled="!setCookBtn(pizza.queue)" type="button" value="end cook" ng-click="deletePizza(pizza, false)" />
+                        </div>
+
+                        <div class="ingredients-show">
+                            <ul>
+                                <li ng-repeat="currentIngredients in pizzaIngredients">
+
+                                    <img class="ingredient-icon" src="{{currentIngredients.Ingredient.Photo}}" />
+                                    <span ng-bind="currentIngredients.Ingredient.Name"></span> x<span ng-bind="currentIngredients.Count"></span>
+
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="not-enough-products">
+                    <p>
+                        Not enough <span ng-bind="response.name"></span>
+                    </p>
+                    <div class="not-enough-products_buttons">
+                        <input type="button" value="delete" ng-click="deletePizza(currentPizza, true)" />
+                        <input type="button" value="turn to end" ng-click="turnPizza(currentPizza)" />
+                    </div>
+                </div>
+                <div class="pizza-done">
+                    <p>
+                        Pizza is ready, now end cook
+                    </p>
+                    <div class="pizza-done_buttons">
+                        <input type="button" value="ok" ng-click="closePopup()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="history" ng-controller="historyController" ng-show="isShiftOn">
+            <div ng-class="{'hide-history': isShowHistory()}">
+                <div class="history-block">
+                    <p>done</p>
+                    <div class="pizza-ingredients" ng-repeat="donePizza in done track by $index">
+                        <img src="{{donePizza.photo}}" />
+                        <p>
+                            Ingredients for <span class="blue-text" ng-bind="donePizza.name"></span>
+                        </p>
+                        <ul>
+                            <li ng-repeat="currentIngredients in donePizza.ingredients">
+                                <span ng-bind="getIngredientById(currentIngredients.id).name"></span> x<span ng-bind="currentIngredients.count"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="history-block">
+                    <p>deleted</p>
+                    <div class="pizza-ingredients" ng-repeat="deletedPizza in deleted track by $index">
+                        <img src="{{deletedPizza.photo}}" />
+                        <p>
+                            Ingredients for <span class="blue-text" ng-bind="deletedPizza.name"></span>
+                        </p>
+                        <ul>
+                            <li ng-repeat="currentIngredients in deletedPizza.ingredients">
+                                <span ng-bind="getIngredientById(currentIngredients.id).name"></span> x<span ng-bind="currentIngredients.count"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="/Scripts/CookServices/pageService.js" type="text/javascript"></script>
+<script src="/Scripts/CookServices/shiftService.js" type="text/javascript"></script>
+<script src="/Scripts/CookServices/historyService.js" type="text/javascript"></script>
+<script src="/Scripts/CookServices/ingredientsService.js" type="text/javascript"></script>
+<script src="/Scripts/CookServices/pizzaService.js" type="text/javascript"></script>
+
+<script src="/Scripts/CookControllers/shiftController.js" type="text/javascript"></script>
+<script src="/Scripts/CookControllers/mainController.js" type="text/javascript"></script>
+<script src="/Scripts/CookControllers/pageController.js" type="text/javascript"></script>
+<script src="/Scripts/CookControllers/historyController.js" type="text/javascript"></script>

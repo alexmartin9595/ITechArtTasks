@@ -83,7 +83,7 @@ namespace PizzaService.Controllers
                 ServiceUser serviceUser = new ServiceUser
                 {
                     Name = model.UserName,
-                    Role = "Client"
+                    RoleId = 2
                 };
                 ServiceUserRepository.Instance.AddUser(serviceUser);
                 var user = new ApplicationUser() { UserName = model.UserName };

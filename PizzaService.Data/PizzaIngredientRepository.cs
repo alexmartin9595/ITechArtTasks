@@ -28,7 +28,7 @@ namespace PizzaService.Data
         {
             using (var currentContext = new PizzaSericeContext())
             {
-                return currentContext.PizzaIngredients.Where(x => x.PizzaId == pizzaId).ToList();   
+                return currentContext.PizzaIngredients.Include("Ingredient").Where(x => x.PizzaId == pizzaId).ToList();   
             }
         }
 
@@ -50,41 +50,48 @@ namespace PizzaService.Data
             }
         }
 
-        public void IncrementCount(int pizzaId, int ingredientId)
+        public void IncrementCount(int userId, int pizzaId, int ingredientId)
         {
+            PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredientId);
+            Ingredient ingredient = IngredientRepository.Instance.GetIngredientById(ingredientId);
+            Order currentOrder = OrderRepository.Instance.GetUnConfirmedOrder(userId);
             using (var currentContext = new PizzaSericeContext())
             {
-                PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredientId);
                 pizzaIngredient.Count++;
+                OrderRepository.Instance.AddPrice(currentOrder.Id, ingredient.Price);
                 currentContext.Entry(pizzaIngredient).State = EntityState.Modified;
                 currentContext.SaveChanges();
             }
 
         }
 
-        public void DecrementCount(int pizzaId, int ingredientId)
+        public void DecrementCount(int userId, int pizzaId, int ingredientId)
         {
             using (var currentContext = new PizzaSericeContext())
             {
                 PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredientId);
+                Ingredient ingredient = IngredientRepository.Instance.GetIngredientById(ingredientId);
+                Order currentOrder = OrderRepository.Instance.GetUnConfirmedOrder(userId);
+
                 if (pizzaIngredient.Count == 1)
                 {
-                    Ingredient ingredient = IngredientRepository.Instance.GetIngredientById(ingredientId);
-                    DeleteIngredient(pizzaId, ingredient);
+                    DeleteIngredient(userId, pizzaId, ingredient);
                     return;
                 }
                 pizzaIngredient.Count--;
+                OrderRepository.Instance.DecrementPrice(currentOrder.Id, ingredient.Price);
                 currentContext.Entry(pizzaIngredient).State = EntityState.Modified;
                 currentContext.SaveChanges();
             }
 
         }
 
-        public void AddPizzaIngredient(int pizzaId, Ingredient ingredient)
+        public void AddPizzaIngredient(int userId, int pizzaId, Ingredient ingredient)
         {
             using (var currentContext = new PizzaSericeContext())
             {
                 PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredient.Id);
+                Order currentOrder = OrderRepository.Instance.GetUnConfirmedOrder(userId);
                 if (pizzaIngredient == null)
                 {
                     currentContext.PizzaIngredients.Add(new PizzaIngredient
@@ -93,23 +100,26 @@ namespace PizzaService.Data
                         IngredientId = ingredient.Id,
                         Count = 1
                     });
+                    OrderRepository.Instance.DecrementPrice(currentOrder.Id, ingredient.Price);
                 }
                 else
-                    IncrementCount(pizzaId, ingredient.Id);
+                    IncrementCount(userId, pizzaId, ingredient.Id);
                 PizzaRepository.Instance.AddPrice(pizzaId, ingredient.Price);
                 currentContext.SaveChanges();
             }
 
         }
 
-        public void DeleteIngredient(int pizzaId, Ingredient ingredient)
+        public void DeleteIngredient(int userId, int pizzaId, Ingredient ingredient)
         {
             using (var currentContext = new PizzaSericeContext())
             {
                 PizzaIngredient pizzaIngredient = GetPizzaIngredientById(pizzaId, ingredient.Id);
+                Order currentOrder = OrderRepository.Instance.GetUnConfirmedOrder(userId);
                 currentContext.PizzaIngredients.Attach(pizzaIngredient);
                 currentContext.Entry(pizzaIngredient).State = EntityState.Deleted;
                 PizzaRepository.Instance.DecrementPrice(pizzaId, ingredient.Price);
+                OrderRepository.Instance.DecrementPrice(currentOrder.Id, ingredient.Price);
                 currentContext.SaveChanges();
             }
         }

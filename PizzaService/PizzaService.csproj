@@ -51,6 +51,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -178,6 +181,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508311338408_MigrateDb.cs" />
+    <Compile Include="Migrations\201508311338408_MigrateDb.Designer.cs">
+      <DependentUpon>201508311338408_MigrateDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -197,6 +204,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\PizzaModel.cs" />
+    <Compile Include="Models\UpdateCountStock.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -205,8 +214,13 @@
     <Content Include="App_Data\aspnet-PizzaService-20150819125149_log.ldf">
       <DependentUpon>aspnet-PizzaService-20150819125149.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\blocker-styles.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cook.css" />
+    <Content Include="Content\history.css" />
+    <Content Include="Content\reset.css" />
+    <Content Include="Content\shift.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\font-awesome-4.4.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.4.0\css\font-awesome.min.css" />
@@ -247,6 +261,7 @@
     <Content Include="Images\loader.gif" />
     <Content Include="Images\wrapper-background.gif" />
     <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\blocker.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -274,15 +289,25 @@
     <Content Include="fonts\font-awesome-4.4.0\fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\font-awesome-4.4.0\fonts\FontAwesome.otf" />
     <Content Include="fonts\Reklame.otf" />
+    <Content Include="fonts\Royalacid.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Controllers\clientController.js" />
     <Content Include="Scripts\Controllers\ingredientsController.js" />
     <Content Include="Scripts\Controllers\orderController.js" />
     <Content Include="Scripts\Controllers\pizzaController.js" />
-    <Content Include="Scripts\ingredientModel.js" />
+    <Content Include="Scripts\Controllers\userController.js" />
+    <Content Include="Scripts\CookControllers\historyController.js" />
+    <Content Include="Scripts\CookControllers\mainController.js" />
+    <Content Include="Scripts\CookControllers\pageController.js" />
+    <Content Include="Scripts\CookControllers\shiftController.js" />
+    <Content Include="Scripts\Module\module.js" />
+    <Content Include="Scripts\CookServices\historyService.js" />
+    <Content Include="Scripts\CookServices\ingredientsService.js" />
+    <Content Include="Scripts\CookServices\pageService.js" />
+    <Content Include="Scripts\CookServices\pizzaService.js" />
+    <Content Include="Scripts\CookServices\shiftService.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.bpopup.min.js" />
-    <Content Include="Scripts\pizzaModel.js" />
     <Content Include="Scripts\Service\clientService.js" />
     <Content Include="Scripts\Service\ingredientService.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -297,6 +322,7 @@
     <Content Include="Scripts\Service\pizzaService.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Service\userService.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -323,10 +349,17 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\NavigationAdmin.cshtml" />
+    <Content Include="Views\Shared\Client.cshtml" />
+    <Content Include="Views\Shared\Cook.cshtml" />
+    <Content Include="Views\Shared\User.cshtml" />
+    <Content Include="Views\Shared\Admin.cshtml" />
+    <Content Include="Views\Shared\Stock.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\Angullar\" />
-    <Folder Include="Scripts\Model\" />
+    <EmbeddedResource Include="Migrations\201508311338408_MigrateDb.resx">
+      <DependentUpon>201508311338408_MigrateDb.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

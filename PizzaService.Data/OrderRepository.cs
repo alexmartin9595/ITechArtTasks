@@ -46,23 +46,7 @@ namespace PizzaService.Data
             }
         }
 
-        public IEnumerable<Pizza> GetAllPizzaFromOrder(int orderId)
-        {
-            using (var currentcontext = new PizzaSericeContext())
-            {
-                IEnumerable<PizzaToOrder> pizzasToOrder =
-                    PizzaToOrderRepository.Instance.GetPizzaToOrderByOrderId(orderId);
-                List<Pizza> pizzas = new List<Pizza>();
-                foreach (var pizzaToOrder in pizzasToOrder)
-                {
-                    Pizza pizza =
-                        currentcontext.Pizzas.Include("PizzaToOrder").Include("PizzaIngredients").FirstOrDefault(p => p.Id == pizzaToOrder.PizzaId);
-                    pizzas.Add(pizza);
-                }
-                return pizzas;
-            }
-        }
-
+        
         public Order GetUnConfirmedOrder(int userId)
         {
             using (var currentContext = new PizzaSericeContext())

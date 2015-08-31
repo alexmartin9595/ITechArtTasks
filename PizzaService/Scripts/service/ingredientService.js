@@ -1,10 +1,19 @@
 (function () {
     'use strict';
 
-    var restaurantApp = angular.module('restaurantApp');
-
+    var restaurantApp = angular.module('restaurantApp');    
     function callback($http) {
+        var pizzaIngredients = [];
         return {
+
+            setPizzaIngredients: function  (ingredients) {
+                pizzaIngredients = ingredients;
+            },
+
+            getPizzaIngredients: function () {
+                return pizzaIngredients;
+            },            
+
             getIngredients: function () {
                 return $http.get("/Home/GetAllIngredients");
             },
@@ -13,9 +22,9 @@
                 return $http.get("/Home/GetIngredientById/" + id);
             },
 
-            getPizzaIngredients: function(pizzaId) {
-                return $http.get("/Home/GetPizzaIngredients/" + pizzaId);
-            },
+            //getPizzaIngredients: function(pizzaId) {
+            //    return $http.get("/Home/GetPizzaIngredients/" + pizzaId);
+            //},
 
             addIngredient: function (data) {
                 return $http.post("/Home/AddIngredient", data);

@@ -4,8 +4,16 @@
     var restaurantApp = angular.module('restaurantApp');
     
     function callback($http) {
-    
-        return {       
+        var currentPizza = {};
+        return {
+            setCurrentPizza: function (pizza) {
+                currentPizza = pizza;
+            },
+
+            getCurrentPizza: function () {
+                return currentPizza;
+            },
+
             getPizza: function() {
                 return $http.get("/Home/GetAllPizza");
             },
@@ -16,7 +24,12 @@
 
             addPizza: function(data) {
                 return $http.post("/Home/AddPizzaToOrder", data);
-            }
+            },
+
+            getPizzaIngredients: function (pizzaId) {
+                return $http.get("/Home/GetPizzaIngredients/" + pizzaId);
+            }            
+
         }
     }
     

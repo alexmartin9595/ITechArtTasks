@@ -16,7 +16,6 @@ namespace PizzaService.Controllers
     {
         public ActionResult Index()
         {
-            //IngredientLogic.GetInstance().AddIngredient(new Ingredient { Name = "tomato", Photo = "../images/ingredients/tomato-sauce.jpg", Price = 9000, Weight = 100});
             return View();
         }
 
@@ -34,11 +33,51 @@ namespace PizzaService.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult GetAllUsers ()
+        {
+            IEnumerable<ServiceUser> users = ServiceUserRepository.Instance.GetAllUsers();
+            return Json(users.Select(u => new {Id = u.Id, Name = u.Name, Role = u.Role }), JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
+        public ActionResult GetAllRoles ()
+        {
+            IEnumerable<Role> roles = ServiceUserRepository.Instance.GetAllRoles();
+            return Json(roles, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult AddRole(Role role)
+        {
+            ServiceUserRepository.Instance.AddRole(role);
+            return Json(false);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult DeleteRole(Role role)
+        {
+            ServiceUserRepository.Instance.DeleteRole(role.Id);
+            return Json(false);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPost]
+        public ActionResult EditUserRole(UserModel userModel)
+        {
+            ServiceUserRepository.Instance.EditUserRole(userModel.User.Id, userModel.Role);
+            return Json(false);
+        }
+
         [HttpGet]
         public ActionResult GetAllIngredients()
         {
             IEnumerable<Ingredient> ingredients = IngredientRepository.Instance.GetAllIngredients();
-            return Json(ingredients, JsonRequestBehavior.AllowGet) ;
+            return Json(ingredients, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -69,7 +108,7 @@ namespace PizzaService.Controllers
             return Json(pizzaIngredients.Select(p => new {Count = p.Count, Ingredient = p.Ingredient}), JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult AddPizzaToOrder(Pizza pizza)
         {
@@ -79,7 +118,7 @@ namespace PizzaService.Controllers
             return Json(false);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpGet]
         public ActionResult GetCurrentOrder()
         {
@@ -88,7 +127,7 @@ namespace PizzaService.Controllers
             return Json(currentOrder, JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpGet]
         public ActionResult GetCurrentOrderPizza()
         {
@@ -98,11 +137,11 @@ namespace PizzaService.Controllers
                 return Json(false);
 
             int currentOrderId = currentOrder.Id;
-            IEnumerable<Pizza> pizza = OrderRepository.Instance.GetAllPizzaFromOrder(currentOrderId);
-            return Json(pizza, JsonRequestBehavior.AllowGet);
+            IEnumerable<PizzaToOrder> pizza = PizzaToOrderRepository.Instance.GetPizzaToOrderByOrderId(currentOrderId);
+            return Json(pizza.Select(p => new {Pizza = p.Pizza, Count = p.Count }), JsonRequestBehavior.AllowGet);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult DeleteOrderPizza(Pizza pizza)
         {
@@ -113,7 +152,7 @@ namespace PizzaService.Controllers
             return Json(false);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult CreatePizza()
         {
@@ -123,57 +162,101 @@ namespace PizzaService.Controllers
             return Json("Pizza created succesfully");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult AddIngredient(PizzaModel pizzaModel)
         {
-            PizzaIngredientRepository.Instance.AddPizzaIngredient(pizzaModel.PizzaId, pizzaModel.Ingredient);
+            ServiceUser currentUser = ServiceUserRepository.Instance.GetUserByName(User.Identity.Name);
+            PizzaIngredientRepository.Instance.AddPizzaIngredient(currentUser.Id, pizzaModel.PizzaId, pizzaModel.Ingredient);
             return Json("Ingredient added succesfully");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult DeleteIngredient(PizzaModel pizzaModel)
         {
-            PizzaIngredientRepository.Instance.DeleteIngredient(pizzaModel.PizzaId, pizzaModel.Ingredient);
+            ServiceUser currentUser = ServiceUserRepository.Instance.GetUserByName(User.Identity.Name);
+            PizzaIngredientRepository.Instance.DeleteIngredient(currentUser.Id, pizzaModel.PizzaId, pizzaModel.Ingredient);
             return Json("Ingredient deleted succesfully");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult IncrementIngredient(PizzaModel pizzaModel)
         {
-            PizzaIngredientRepository.Instance.IncrementCount(pizzaModel.PizzaId, pizzaModel.Ingredient.Id);
+            ServiceUser currentUser = ServiceUserRepository.Instance.GetUserByName(User.Identity.Name);
+            PizzaIngredientRepository.Instance.IncrementCount(currentUser.Id, pizzaModel.PizzaId, pizzaModel.Ingredient.Id);
             return Json("Ingredient incremented succesfully");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult DecrementIngredient(PizzaModel pizzaModel)
         {
-            PizzaIngredientRepository.Instance.DecrementCount(pizzaModel.PizzaId, pizzaModel.Ingredient.Id);
+            ServiceUser currentUser = ServiceUserRepository.Instance.GetUserByName(User.Identity.Name);
+            PizzaIngredientRepository.Instance.DecrementCount(currentUser.Id, pizzaModel.PizzaId, pizzaModel.Ingredient.Id);
             return Json("Ingredient decremented succesfully");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Client")]
         [HttpPost]
         public ActionResult ConfirmOrder()
         {
-            OrderRepository.Instance.ConfirmOrder(1);
+            ServiceUser currentUser = ServiceUserRepository.Instance.GetUserByName(User.Identity.Name);
+            OrderRepository.Instance.ConfirmOrder(currentUser.Id);
             return Json("Order Successfully Confirmed!");
         }
 
-        [Authorize]
+
+        [Authorize(Roles = "Cooker")]
         [HttpGet]
-        public ActionResult GetPizzaCount(int id)
+        public ActionResult GetCountIngredientsByPizzaId(int id)
         {
-            string currrentUserName = User.Identity.Name;
-            int currentUserId = ServiceUserRepository.Instance.GetUserByName(currrentUserName).Id;
-            Order currentOrder = OrderRepository.Instance.GetUnConfirmedOrder(currentUserId);
-            if (currentOrder == null)
-                return Json(false);
-            int count = PizzaToOrderRepository.Instance.GetPizzaCountByOrderId(currentOrder.Id, id);
-            return Json(count, JsonRequestBehavior.AllowGet);
+            IEnumerable<PizzaIngredient> ingredients = PizzaIngredientRepository.Instance.GetAllPizzaIngredients(id);
+            return Json(ingredients, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+        [Authorize(Roles = "Cooker")]
+        [HttpGet]
+        public ActionResult GetAllShifts()
+        {
+            IEnumerable<Shift> shift = ShiftRepository.Instance.GetAllShifts();
+            return Json(shift, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Cooker")]
+        [HttpPost]
+        public ActionResult UpdateStock(UpdateCountStock updater)
+        {
+            StockRepository.Instance.UpdateStock(updater.Id, updater.Count);
+            return Json(false);
+        }
+
+        [Authorize(Roles = "Cooker")]
+        [HttpGet]
+        public ActionResult GetPizzasToCook()
+        {
+            IEnumerable<Pizza> pizzas = PizzaToOrderRepository.Instance.GetPizzasToCook();
+            return Json(pizzas, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Cooker")]
+        [HttpGet]
+        public ActionResult GetPizzaByIdWithIngredients(int id)
+        {
+            Pizza pizza = PizzaRepository.Instance.GetPizzaById(id);
+            return Json(pizza, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize(Roles = "Cooker")]
+        [HttpGet]
+        public ActionResult GetIngredientsNameByIds(int[] ids)
+        {
+            IEnumerable<Ingredient> ingredients = IngredientRepository.Instance.GetIngredientsNameByIds(ids);
+            return Json(ingredients, JsonRequestBehavior.AllowGet);
         }
     }
 }

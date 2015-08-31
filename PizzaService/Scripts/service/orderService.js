@@ -1,10 +1,20 @@
 (function () {
     'use strict';
     
-    var restaurantApp = angular.module('restaurantApp', []);
+    var restaurantApp = angular.module('restaurantApp');
     
     function callback($http, ingredientService, pizzaService) {
+        var order = {};
         return {
+
+            getOrder: function() {
+                return order;
+            },
+
+            setOrder: function(newOrder) {
+                order = newOrder;
+            },
+
             getCurrentOrder: function() {
                 return $http.get("/Home/GetCurrentOrder");
             },

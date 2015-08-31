@@ -1,0 +1,129 @@
+﻿<div class="content" ng-controller="IngredientsController">
+    <div ng-controller="PizzaController">
+        <div class="pizza">
+            <h2>Pizza</h2>
+            <table>
+                <tr>
+                    <th>№</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Diameter</th>
+                    <th>Photo</th>
+                    <th><span>Composition</span></th>
+                </tr>
+                <tr ng-repeat="pizza in pizza">
+                    <td>{{$index + 1}}</td>
+                    <td>{{pizza.Name}}</td>
+                    <td>{{pizza.Price}}</td>
+                    <td>{{pizza.Diameter}}</td>
+                    <td class="pizza-image"><img src="{{pizza.Photo}}" /></td>
+                    <td>
+                        <span class="ingredients-viewer" ng-click="showPopup(pizza.Id)">Show Ingredients</span>
+                        <div class="ingredients-popup">
+                            <table>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Photo</th>
+                                    <th>Price</th>
+                                    <th>Count</th>
+                                </tr>
+                                <tr ng-repeat="ingredient in pizzaIngredients">
+                                    <td>{{ingredient.Ingredient.Name}}</td>
+                                    <td class="pizza-image"><img src="{{ingredient.Ingredient.Photo}}" /></td>
+                                    <td>{{ingredient.Ingredient.Price}}</td>
+                                    <td>{{ingredient.Count}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                    <td class="add"><button ng-click="addPizza(pizza)">Add</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div ng-controller="OrderController" class="orders">
+            <button class="navbutton" ng-click="createPizza()">Create pizza</button>
+
+            <div class="ingredients">
+                <h2>Ingredients</h2>
+                <div>
+                    <h3></h3>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Weight</th>
+                            <th>Photo</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr ng-repeat="item in model">
+                            <td>{{item.Name}}</td>
+                            <td>{{item.Weight}}</td>
+                            <td class="pizza-image"><img src="{{item.Photo}}" /></td>
+                            <td>{{item.Price}}</td>
+                            <td class="add"><button ng-click="addIngredient(item)">Add</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="order-list">
+                <h2>Order Number {{currentOrder.Id}}</h2>
+                <table>
+                    <tr>
+                        <th>№</th>
+                        <th>Name</th>
+                        <th>Composition</th>
+                        <th>Count</th>
+                    </tr>
+                    <tr ng-repeat="item in orderPizza">
+                        <td>{{$index + 1}}</td>
+                        <td>{{item.Pizza.Name}}</td>
+                        <td>
+                            <span class="customingredients" ng-show="item.Pizza.IsCustom">Custom Ingredients</span>
+                            <span class="ingredients-viewer" ng-show="!item.Pizza.IsCustom" ng-click="showOrderPizzaIngredients(item.Pizza)">Show Ingredients</span>
+                        </td>
+                        <td>{{item.Count}}</td>
+                        <td class="delete"><span class="button remove" title="remove" ng-click="deleteOrderPizza(item.Pizza)">&#xf00d</span></td>
+                        <td class="delete"><span class="button edit" title="edit" ng-show="!item.Pizza.IsCustom" ng-click="openOrderEditor(item.Pizza)">&#xf044;</span></td>
+                    </tr>
+                </table>
+
+                <div class="order-ingredients-popup">
+                    <h3>Indgredients</h3>
+                    <table>
+                        <tr>
+                            <th>Name</th>
+                            <th>Photo</th>
+                            <th>Price</th>
+                            <th>Count</th>
+                        </tr>
+                        <tr ng-repeat="ingredient in pizzaIngredients">
+                            <td>{{ingredient.Ingredient.Name}}</td>
+                            <td class="pizza-image"><img src="{{ingredient.Ingredient.Photo}}" /></td>
+                            <td>{{ingredient.Ingredient.Price}}</td>
+                            <td>{{ingredient.Count}}</td>
+                            <td class="delete"><span class="button remove" ng-click="deleteIngredient(ingredient.Ingredient)">&#xf00d;</span></td>
+                            <td class="delete"><span class="button more" ng-click="incrementIngredient(ingredient.Ingredient)">&#xf055;</span></td>
+                            <td class="delete"><span class="button less" ng-click="decrementIngredient(ingredient.Ingredient)">&#xf056;</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <p class="order-sum">Order price {{currentOrder.Price}}</p>
+            <button class="confirm" ng-click="confirmOrder()">Confirm Order</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/Scripts/Service/orderService.js"></script>
+<script src="~/Scripts/Service/ingredientService.js"></script>
+<script src="~/Scripts/Service/pizzaService.js"></script>
+<script src="~/Scripts/Service/clientService.js"></script>
+<script src="~/Scripts/Service/userService.js"></script>
+
+<script src="~/Scripts/Controllers/ingredientsController.js"></script>
+<script src="~/Scripts/Controllers/orderController.js"></script>
+<script src="~/Scripts/Controllers/pizzaController.js"></script>
+<script src="~/Scripts/Controllers/userController.js"></script>

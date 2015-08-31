@@ -30,5 +30,7 @@ namespace PizzaService.Entities
         public virtual ICollection<PizzaIngredient> PizzaIngredients { get; set; }
        
         public virtual ICollection<PizzaToOrder> PizzaToOrder { get; set; }
+
+        public virtual ICollection<History> Histories { get; set; }
     }
 }

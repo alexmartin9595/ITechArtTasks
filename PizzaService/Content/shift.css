@@ -1,0 +1,66 @@
+﻿.shift {
+    display: block;
+    overflow: hidden;
+
+    margin: 0 0 10px 0;
+}
+
+.shift p {
+    margin: 10px auto;
+
+    font-size: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.shift span {
+    color: #174be5;
+}
+
+.shiftBtn {
+    margin: 10px;
+
+    height: 30px;
+
+    border:none;
+    border-radius: 5px;
+
+    text-transform: uppercase;
+    background-color: #1573c2;
+
+    float: left;
+}
+
+.shift a {
+    margin: 5px 10px 0 0;
+
+    font-size: 30px;
+    text-decoration: none;
+
+    float: right;
+}
+
+.end-shift {
+    display: none;
+
+    font-size: 25px;
+}
+
+.end-shift p {
+    margin: 10px;
+
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.shift-name {
+    color: #174be5;
+}
+
+.end-shift li{
+    list-style: none;
+}
+
+.end-shift .no-margin {
+    margin: 0;
+}
