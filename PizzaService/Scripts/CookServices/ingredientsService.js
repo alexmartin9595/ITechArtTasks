@@ -2,16 +2,11 @@
     "use strict";
     var restaurantApp = angular.module("restaurantApp");
     restaurantApp.service("ingredientService", ["$http", function ($http) {
-        //var ingredients = Ingredients.data;
 
         this.getIngredients = function () {
-            return $http.get("/Home/GetAllIngredients"); //ingredients;
+            return $http.get("/Home/GetAllIngredients"); 
         };
-        /*
-        this.getIngredientById = function (id) {
-            return $http.get("/Home/GetIngredientById/" + id);
-        }
-        */
+
         this.GetCountIngredientsByPizzaId = function(id) {
             return $http.get("/Home/GetCountIngredientsByPizzaId/" + id);
         }
@@ -22,10 +17,11 @@
 
         var stockIngredients = [];
 
+        this.setStockIngredients = function(ingredients) {
+            stockIngredients = ingredients;
+        }
+
         this.isEnoughIngredients = function (currentIngredients) {
-            this.getIngredients().then(function(response) {
-                stockIngredients = response.data;
-            });
 
             var decrise = [];
             for (var i = 0; i < currentIngredients.length; i++) {

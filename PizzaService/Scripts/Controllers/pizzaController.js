@@ -3,7 +3,7 @@
     
     var restaurantApp = angular.module('restaurantApp');
     
-    function callback($scope, pizzaService, ingredientService, orderService, clientService) {
+    function callback($scope, pizzaService, ingredientService, orderService) {
 
         $scope.currentOrder = {};
 
@@ -14,7 +14,8 @@
         }        
 
         $scope.getPizzaIngredients = function (pizzaId) {
-            pizzaService.getPizzaIngredients(pizzaId).then(function (response) {                                
+            pizzaService.getPizzaIngredients(pizzaId).then(function (response) {
+                $scope.pizzaIngredients = response.data;
                 ingredientService.setPizzaIngredients(response.data);
             });
         }
@@ -32,9 +33,11 @@
             orderService.deleteOrderPizza(pizza).then(function () {
                 bootbox.alert("Order removed successfully");
                 orderService.getCurrentOrderPizza().then(function (response) {
-                    $scope.orderPizza = response.data;                    
+                    $scope.orderPizza = response.data;
+                    orderService.setOrderPizza($scope.orderPizza);
                 });
-                orderService.getCurrentOrder().then(function(response) {
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
                     orderService.setOrder(response.data);
                 });
 
@@ -44,10 +47,16 @@
         $scope.addPizza = function (pizza) {           
             pizzaService.addPizza(pizza).then(function () {
                 orderService.getCurrentOrderPizza().then(function (response) {
-                    $scope.orderPizza = response.data;                    
+                    $scope.orderPizza = response.data;
+                    orderService.setOrderPizza($scope.orderPizza);
                 });
-                orderService.getCurrentOrder().then(function(response) {
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
                     orderService.setOrder(response.data);
+                });
+                pizzaService.getPizzaIngredients(pizza.Id).then(function (response) {
+                    $scope.pizzaIngredients = response.data;
+                    ingredientService.setPizzaIngredients(response.data);
                 });
                 bootbox.alert("Pizza added successfully");                
              });
@@ -78,7 +87,25 @@
                 $scope.currentOrder = newValue;
             }
         });
+
+        $scope.$watch(function () {
+            return orderService.getOrderPizza();
+        },
+        function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.orderPizza = newValue;
+            }
+        });
+
+        $scope.$watch(function () {
+            return ingredientService.getPizzaIngredients();
+        },
+        function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.pizzaIngredients = newValue;
+            }
+        });
     }
     
-    restaurantApp.controller('PizzaController', ['$scope', 'pizzaService', 'ingredientService', 'orderService',  'clientService', callback]);    
+    restaurantApp.controller('PizzaController', ['$scope', 'pizzaService', 'ingredientService', 'orderService', callback]);    
 })();

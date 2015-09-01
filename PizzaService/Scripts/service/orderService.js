@@ -3,9 +3,17 @@
     
     var restaurantApp = angular.module('restaurantApp');
     
-    function callback($http, ingredientService, pizzaService) {
+    function callback($http) {
         var order = {};
+        var orderPizza = {};
         return {
+            getOrderPizza: function() {
+                return orderPizza;
+            },
+
+            setOrderPizza: function(pizza) {
+                orderPizza = pizza;
+            },
 
             getOrder: function() {
                 return order;
@@ -45,7 +53,7 @@
     }
     }
     
-    restaurantApp.factory('orderService', ['$http', 'ingredientService', 'pizzaService', callback]);    
+    restaurantApp.factory('orderService', ['$http', callback]);    
 })();
 
 

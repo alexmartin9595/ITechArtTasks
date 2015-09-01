@@ -76,6 +76,7 @@ namespace PizzaService.Data
                 if (pizzaIngredient.Count == 1)
                 {
                     DeleteIngredient(userId, pizzaId, ingredient);
+                    OrderRepository.Instance.DecrementPrice(currentOrder.Id, ingredient.Price);
                     return;
                 }
                 pizzaIngredient.Count--;
@@ -100,7 +101,7 @@ namespace PizzaService.Data
                         IngredientId = ingredient.Id,
                         Count = 1
                     });
-                    OrderRepository.Instance.DecrementPrice(currentOrder.Id, ingredient.Price);
+                    OrderRepository.Instance.AddPrice(currentOrder.Id, ingredient.Price);
                 }
                 else
                     IncrementCount(userId, pizzaId, ingredient.Id);

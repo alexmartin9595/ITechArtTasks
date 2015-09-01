@@ -3,7 +3,7 @@
     
     var restaurantApp = angular.module('restaurantApp');
     
-    function callback($scope, ingredientService, pizzaService, orderService, clientService) {              
+    function callback($scope, ingredientService, pizzaService, orderService) {              
 
         $scope.getCurrentOrder = function () {
             orderService.getCurrentOrder().then(function (response) {
@@ -18,7 +18,8 @@
             orderService.createPizza().then(function () {
                 orderService.getCurrentOrderPizza().then(function(response) {
                     $scope.orderPizza = response.data;
-                    pizzaService.setCurrentPizza($scope.orderPizza[$scope.orderPizza.length - 1].Pizza);                                  
+                    pizzaService.setCurrentPizza($scope.orderPizza[$scope.orderPizza.length - 1].Pizza);
+                    orderService.setOrderPizza(response.data);
                 });
                 $scope.getCurrentOrder();
             });
@@ -29,8 +30,6 @@
         }
         
         $scope.openOrderEditor = function (pizza) {
-            console.log(pizza);
-
             pizzaService.getPizzaIngredients(pizza.Id).then(function (response) {
                 $scope.pizzaIngredients = response.data;
                 pizzaService.setCurrentPizza(pizza);
@@ -39,14 +38,20 @@
                 follow: [false, false], 
                 position: [500, 100] 
             });            
-        }        
+        }
+
+        $scope.confirmationCallback = function () {
+            bootbox.alert($scope.response);
+        }
         
         $scope.confirmOrder = function () {
-            orderService.confirmOrder().then(function(response) {
-                $scope.data = response.data;
+            orderService.confirmOrder().then(function (response) {
+                $scope.response = response.data;
+                $scope.getCurrentOrder();
+                $scope.orderPizza = [];
+                orderService.setOrderPizza($scope.orderPizza);
+                $('.content').block($scope.confirmationCallback);
             });
-            $('body').block(data);
-            
         }
 
         $scope.$watch(function () {
@@ -57,7 +62,16 @@
                 $scope.currentOrder = newValue;
             }
         });
+
+        $scope.$watch(function () {
+            return orderService.getOrderPizza();
+        },
+        function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.orderPizza = newValue;
+            }
+        });
     }
     
-    restaurantApp.controller('OrderController', ['$scope', 'ingredientService', 'pizzaService', 'orderService', 'clientService', callback]);
+    restaurantApp.controller('OrderController', ['$scope', 'ingredientService', 'pizzaService', 'orderService', callback]);
 })();

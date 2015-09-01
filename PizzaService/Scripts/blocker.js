@@ -1,8 +1,8 @@
 (function ($) {
-    $.fn.block = function (response, params) {
+    $.fn.block = function (callback, params) {
 		var defaultParams = {
 			text: "Wait please ",
-			delay: 100000
+			delay: 3000
 		}
 		var params = $.extend({}, defaultParams, params);
 		
@@ -16,7 +16,7 @@
                 .append("<p>" + params.text + "</p>");
             setTimeout(function () {
 				self.show();
-				bootbox.alert(response);
+				callback();
                 $('.additional-block').remove();				
             }, params.delay);                
         });          

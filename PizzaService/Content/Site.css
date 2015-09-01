@@ -27,7 +27,8 @@ body {
 }
 
 .modal-content {
-    z-index: 9999;
+    color: #252525;
+    
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -160,7 +161,7 @@ button {
     padding:10px 15px;
     margin: 5px 15px;
 
-    font-family:Reklame;
+    font-family:Royalacid;
     font-weight: 700;
 }
 
@@ -176,9 +177,10 @@ button:hover {
 
 .navbutton {
 	margin: 20px;
-	padding: 10px 20px;
+    margin-top: 60px;
+	padding: 20px 150px;
 	
-	font-size:22px;
+	font-size:26px;
 }
 
 .orders {

@@ -149,7 +149,7 @@ namespace PizzaService.Controllers
             int currentUserId = ServiceUserRepository.Instance.GetUserByName(currrentUserName).Id;
             int currentOrderId = OrderRepository.Instance.GetUnConfirmedOrder(currentUserId).Id;
             PizzaToOrderRepository.Instance.DeleteOrderPizza(currentOrderId, pizza);
-            return Json(false);
+            return Json("Pizza deleted succesfully");
         }
 
         [Authorize(Roles = "Client")]
@@ -310,14 +310,7 @@ namespace PizzaService.Controllers
             IngredientRepository.Instance.AddIngredient(ingredient);
         }
 
-        // POST: Stock/DeleteIngredient
-        [Authorize(Roles = "Director")]
-        [HttpPost]
-        public void DeleteIngredient(int id)
-        {
-            IngredientRepository.Instance.DeleteIngredient(id);
-        }
-
+        
         // POST: Stock/AddToCart/3
         [Authorize(Roles = "Director")]
         [HttpPost]

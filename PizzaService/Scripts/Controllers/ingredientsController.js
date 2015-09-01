@@ -2,7 +2,7 @@
     'use strict';
     var restaurantApp = angular.module('restaurantApp');
 
-    function callback($scope, ingredientService, orderService, clientService, pizzaService) {       
+    function callback($scope, ingredientService, orderService, pizzaService) {       
         
         $scope.currentPizza = {};
 
@@ -20,7 +20,13 @@
             ingredientService.addIngredient(pizzaModel).then(function () {
                 pizzaService.getPizzaIngredients(pizzaModel.PizzaId).then(function (response) {
                     $scope.pizzaIngredients = response.data;
+                    ingredientService.setPizzaIngredients(response.data);
                 });
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
+                    orderService.setOrder($scope.currentOrder);
+                });
+
             });            
         }
         
@@ -32,6 +38,11 @@
             ingredientService.deleteIngredient(pizzaModel).then(function () {
                 pizzaService.getPizzaIngredients(pizzaModel.PizzaId).then(function (response) {
                     $scope.pizzaIngredients = response.data;
+                    ingredientService.setPizzaIngredients(response.data);
+                });
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
+                    orderService.setOrder($scope.currentOrder);
                 });
             });                       
         }
@@ -45,6 +56,11 @@
             ingredientService.incrementIngredient(pizzaModel).then(function () {
                 pizzaService.getPizzaIngredients(pizzaModel.PizzaId).then(function (response) {
                     $scope.pizzaIngredients = response.data;
+                    ingredientService.setPizzaIngredients(response.data);
+                });
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
+                    orderService.setOrder($scope.currentOrder);
                 });
             });
             
@@ -58,6 +74,11 @@
             ingredientService.decrementIngredient(pizzaModel).then(function () {
                 pizzaService.getPizzaIngredients(pizzaModel.PizzaId).then(function (response) {
                     $scope.pizzaIngredients = response.data;
+                    ingredientService.setPizzaIngredients(response.data);
+                });
+                orderService.getCurrentOrder().then(function (response) {
+                    $scope.currentOrder = response.data;
+                    orderService.setOrder($scope.currentOrder);
                 });
             });            
         }
@@ -88,6 +109,16 @@
                 $scope.currentOrder = newValue;
             }
         });
+
+        $scope.$watch(function () {
+            return orderService.getOrderPizza();
+        },
+        function (newValue, oldValue) {
+            if (newValue !== oldValue) {
+                $scope.orderPizza = newValue;
+            }
+        });
+       
     }    
-    restaurantApp.controller('IngredientsController', ['$scope', 'ingredientService', 'orderService', 'clientService', 'pizzaService', callback]);
+    restaurantApp.controller('IngredientsController', ['$scope', 'ingredientService', 'orderService', 'pizzaService', callback]);
 })();

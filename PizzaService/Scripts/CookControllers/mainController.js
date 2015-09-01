@@ -92,6 +92,13 @@
 
         $scope.turnPizza = function (pizza) {
             pizzaService.turnPizza(pizza.pizza.Id);
+            $scope.pizzas = pizzaService.getPizza();
+            $scope.pizzasQueue = [];
+            $scope.cookBtns = [];
+            for (var i = 0; i < $scope.pizzas.length; i++) {
+                $scope.pizzasQueue.push({ queue: i, pizza: $scope.pizzas[i] });
+                $scope.cookBtns.push({ id: $scope.pizzasQueue[i].queue, isCooking: false });
+            }
             $('.not-enough-products').bPopup().close();
         }
 
@@ -117,21 +124,24 @@
         }
 
         $scope.startCook = function (pizza) {
-            ingredientService.GetCountIngredientsByPizzaId(pizza.pizza.Id).then(function (response) {
-                $scope.pizzaIngredients = response.data;
+            ingredientService.getIngredients().then(function(response) {
+                ingredientService.setStockIngredients(response.data);
 
-                $scope.response = ingredientService.isEnoughIngredients($scope.pizzaIngredients);
-                if (!$scope.response.isEnough) {
-                    $('.main').block($scope.callback);
-                    $scope.checkPizza(pizza);
-                }
-                else {
-                    $('.main').block($scope.callback);
-                    $scope.checkPizza(pizza);
-                    $scope.setCookBtnToTrue(pizza.queue);
-                    historyService.addDone(pizza.pizza);
-                    shiftService.addDone(pizza.pizza);
-                }
+                ingredientService.GetCountIngredientsByPizzaId(pizza.pizza.Id).then(function(response) {
+                    $scope.pizzaIngredients = response.data;
+
+                    $scope.response = ingredientService.isEnoughIngredients($scope.pizzaIngredients);
+                    if (!$scope.response.isEnough) {
+                        $('.main').block($scope.callback);
+                        $scope.checkPizza(pizza);
+                    } else {
+                        $('.main').block($scope.callback);
+                        $scope.checkPizza(pizza);
+                        $scope.setCookBtnToTrue(pizza.queue);
+                        historyService.addDone(pizza.pizza);
+                        shiftService.addDone(pizza.pizza);
+                    }
+                });
             });
         }
     }

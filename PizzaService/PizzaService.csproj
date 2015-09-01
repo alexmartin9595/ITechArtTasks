@@ -302,9 +302,9 @@
     <Content Include="Scripts\CookControllers\mainController.js" />
     <Content Include="Scripts\CookControllers\pageController.js" />
     <Content Include="Scripts\CookControllers\shiftController.js" />
+    <Content Include="Scripts\CookServices\ingredientsService.js" />
     <Content Include="Scripts\Module\module.js" />
     <Content Include="Scripts\CookServices\historyService.js" />
-    <Content Include="Scripts\CookServices\ingredientsService.js" />
     <Content Include="Scripts\CookServices\pageService.js" />
     <Content Include="Scripts\CookServices\pizzaService.js" />
     <Content Include="Scripts\CookServices\shiftService.js" />
